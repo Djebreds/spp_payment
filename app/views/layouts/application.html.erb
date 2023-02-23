@@ -11,6 +11,20 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+      <% if student_signed_in? %>
+        <%= button_to 'Sign Out', destroy_student_session_path, method: :delete %> |
+      <% elsif !admin_signed_in? %>
+        <%= link_to "Sign In", new_student_session_path %> |
+      <% end %>
+
+      <% if admin_signed_in? %>
+        <%= button_to 'Sign Out as Admin', destroy_admin_session_path, method: :delete %> |
+      <% elsif !student_signed_in? %>
+        <%= link_to "Sign In as Admin", new_admin_session_path %> |
+      <% end %>
     <%= yield %>
   </body>
 </html>
