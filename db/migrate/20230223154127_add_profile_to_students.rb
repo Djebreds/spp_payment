@@ -6,7 +6,7 @@ class AddProfileToStudents < ActiveRecord::Migration[7.0]
     add_column :students, :nis, :string, null: false, limit: 9
     add_column :students, :address, :text
     add_column :students, :phone, :string, limit: 13
-    add_column :students, :status, :integer, null: false
+    add_column :students, :status, :integer, null: false, limit: 1
 
     add_index :students, [:nis, :nisn], unique: true
   end
