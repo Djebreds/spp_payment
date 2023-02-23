@@ -43,7 +43,22 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
+
+# Jquery for datatables
+gem 'jquery-datatables'
+
+# Ajax for datatables server side
+gem 'ajax-datatables-rails'
+
+# Authentication
+gem "devise"
+
+# Authorization
+gem "pundit"
+
+# Recaptcha
+gem "recaptcha"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
