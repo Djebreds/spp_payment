@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MajorTest < ActiveSupport::TestCase
+class Admins::Admin::MajorTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

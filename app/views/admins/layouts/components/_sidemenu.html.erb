@@ -1,0 +1,73 @@
+<nav id="sidebar" class="sidebar">
+	<div class="sidebar-content js-simplebar">
+		<a class="sidebar-brand d-flex gap-1" href="/admin">
+			<%# <img src="{{ asset('assets-admin/img/logo.svg') }}" width="25" alt="">
+			<span class="align-middle mt-2">teady Academy</span> %>
+            <%= image_tag "Logo-light.svg", width: 200 %>
+		</a>
+
+		<ul class="sidebar-nav">
+			<li class="sidebar-header">Dashboard</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="#">
+					<i class="align-middle" data-feather="trello"></i> <span class="align-middle">Dashboard</span>
+				</a>
+			</li>
+			<li class="sidebar-header">Data</li>
+			<li class="sidebar-item active">
+				<a href="#" class="sidebar-link"
+					data-bs-target="#users" data-bs-toggle="collapse" aria-expanded="false">
+					<i class="align-middle" data-feather="users"></i>
+					<span class="align-middle">Users</span>
+				</a>
+				<ul id="users" class="sidebar-dropdown list-unstyled collapse show"
+					data-bs-parent="#sidebar">
+					<li class="sidebar-item active">
+						<a href="#" class="sidebar-link">Admin</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="#" class="sidebar-link">Siswa</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="#" class="sidebar-link">Staff</a>
+					</li>
+				</ul>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" data-bs-target="#category"
+					href="#" data-bs-toggle="collapse" aria-expanded="false">
+					<i class="align-middle" data-feather="grid"></i>
+					<span class="align-middle">Kategori</span>
+				</a>
+				<ul id="category"
+					class="sidebar-dropdown list-unstyled collapse"
+					data-bs-parent="#sidebar">
+					<li class="sidebar-item">
+						<a href="#" class="sidebar-link">Angkatan</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="#" class="sidebar-link">Jurusan</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="#" class="sidebar-link">Kelas</a>
+					</li>
+				</ul>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="#">
+					<i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Budget SPP</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="#">
+					<i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Metode Pembayaran</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="#">
+					<i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Pembayaran</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>

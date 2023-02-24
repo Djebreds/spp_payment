@@ -2,6 +2,6 @@
 import '@hotwired/turbo-rails';
 import 'controllers';
 import 'jquery';
-import 'theme/theme';
 import 'select2';
 import 'plugins/datatables';
+import 'theme/theme';

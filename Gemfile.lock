@@ -98,6 +98,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    execjs (2.8.1)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -210,6 +211,8 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    terser (1.1.13)
+      execjs (>= 0.3.0, < 3)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
@@ -260,6 +263,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
+  terser (~> 1.1)
   turbo-rails
   tzinfo-data
   web-console

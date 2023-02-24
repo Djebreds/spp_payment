@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SppPayment</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+    <div class="wrapper">
+        <%= render "admins/layouts/components/sidemenu" %>
+        <div class="main">
+            <%= render "admins/layouts/components/header" %>
+            <main class="content">
+                <div class="container-fluid">
+                    <p class="notice"><%= notice %></p>
+                    <p class="alert"><%= alert %></p>
+                    <%= yield %>
+                </div>
+                <%= render "admins/layouts/components/footer" %>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        if (document.getElementsByClassName('js-simplebar')[0]) {
+          var e = document.getElementsByClassName('sidebar')[0];
+          document
+            .getElementsByClassName('sidebar-toggle')[0]
+            .addEventListener('click', function () {
+              e.classList.toggle('collapsed'),
+                e.addEventListener('transitionend', function () {
+                  window.dispatchEvent(new Event('resize'));
+                });
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

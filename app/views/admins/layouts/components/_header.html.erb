@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand navbar-light navbar-bg py-2">
+	<a class="sidebar-toggle" id="sidebar-toggle">
+		<i class="hamburger align-self-center"></i>
+	</a>
+
+	<div class="navbar-collapse collapse">
+		<ul class="navbar-nav navbar-align align-items-center">
+			<li class="nav-item dropdown">
+				<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown" aria-expanded="true">
+					<div class="position-relative">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							class="feather feather-bell align-middle me-2">
+							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+						</svg>
+						
+					    <span class="indicator">2</span>
+						
+					</div>
+				</a>
+				<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown"
+					data-bs-popper="static">
+                    <div class="dropdown-menu-header">
+                        <div class="position-relative">
+                            3 Permintaan
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <h6 class="dropdown-header fw-bold">Permintaan Instruktur</h6>
+                        <a href="#" class="list-group-item">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-2">
+                                    <img src="#" class="avatar img-fluid rounded-circle"
+                                        alt="#">
+                                </div>
+                                <div class="col-10 ps-2">
+                                    <div class="text-dark">Dadang Jebred</div>
+                                    <div class="text-muted small mt-1">jebred@gmail.com</div>
+                                    <div class="text-muted small mt-1">2021-20-12</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="dropdown-menu-footer">
+                        <a href="#" class="text-muted">Lihat semua</a>
+                    </div>
+                
+                    <%# <div class="dropdown-menu-footer">
+                        <h6 class="fw-bold text-center m-0">Tidak ada notifikasi.</h6>
+                    </div> %>
+				</div>
+			</li>
+
+
+			<li class="nav-item dropdown">
+				<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+					<i class="align-middle" data-feather="settings"></i>
+				</a>
+				<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+					<%# <img src="{{ $user['photoUrl'] }}" width="35" height="35" class="border border-1 border-dark rounded-circle"
+						alt="{{ $user['name'] }}"> %>
+                        photo
+				</a>
+				<div class="dropdown-menu dropdown-menu-end">
+					<%# {{-- <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+					<a class="dropdown-item" href="pages-settings.html"><i class="align-middle me-1"
+							data-feather="settings"></i>Settings & Privacy</a> --}} %>
+					<div class="dropdown-divider"></div>
+					<%= button_to "Logout", destroy_admin_session_path, method: :delete, class: "dropdown-item" %>
+					<%# <a class="dropdown-item" href="/admins/logout"
+						onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i
+							class="align-middle me-1" data-feather="power"></i>Logout</a>
+					<form action="/admins/logout" id="logout-form" method="POST" class="d-none"></form> %>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>
