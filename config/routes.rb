@@ -26,6 +26,7 @@ Rails.application.routes.draw do
           namespace :users do
             get 'staffs/index'
             get 'students/index'
+            resource :admin, only: [:index, :show, :edit, :update]
             get 'admins/index'
           end
         end

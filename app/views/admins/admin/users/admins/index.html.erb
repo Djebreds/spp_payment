@@ -1,2 +1,162 @@
-<h1>Admins::Admin::Users::Admins#index</h1>
-<p>Find me in app/views/admins/admin/users/admins/index.html.erb</p>
+	<style>
+		div.dataTables_wrapper div.dataTables_processing {
+			background-color: #fff !important;
+
+		}
+
+		.loading>#datatables-column-search-text-inputs_processing {
+			width: 100%;
+			position: relative;
+		}
+
+		div.dataTables_wrapper div.dataTables_processing .progress {
+			background-color: #fff !important;
+			width: 100%;
+		}
+
+		div.dataTables_wrapper div.dataTables_processing {
+			left: 0;
+			margin-left: 0px;
+			margin-top: 0px;
+			padding: 0px;
+			position: absolute;
+			text-align: center;
+			top: 0;
+			width: 200px;
+		}
+
+        .progress-bar {
+            height: 4px;
+            background-color: rgba(5, 114, 206, 0.2);
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .progress-bar-value {
+            width: 100%;
+            height: 100%;
+            background-color: #3f80ea;
+            animation: indeterminateAnimation 1s infinite linear;
+            transform-origin: 0% 50%;
+        }
+
+        @keyframes indeterminateAnimation {
+            0% {
+            transform:  translateX(0) scaleX(0);
+            }
+            40% {
+            transform:  translateX(0) scaleX(0.4);
+            }
+            100% {
+            transform:  translateX(100%) scaleX(0.5);
+            }
+        }
+
+	</style>
+	<div class="container-fluid p-0">
+		<h1 class="mb-3">Data Admin</h1>
+		<nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Users</li>
+				<li class="breadcrumb-item active" aria-current="page">Admin</li>
+			</ol>
+		</nav>
+		<div class="row position-relative">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="load my-5">
+							<div class="d-flex justify-content-center" style="z-index: 999;">
+								<div class="spinner-border text-primary fs-4" role="status" style="width: 3rem; height: 3rem;">
+									<span class="visually-hidden">Loading...</span>
+								</div>
+							</div>
+						</div>
+						<div id="content" class="d-none">
+							<div id="add" class="add align-items-center text-lg-start text-center my-2">
+								<button class="btn btn-secondary mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+										viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-rotate-cw align-middle me-2">
+										<polyline points="23 4 23 10 17 10"></polyline>
+										<path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+									</svg> Reload </button>
+							</div>
+							<div id="datatables-column-search-text-inputs_wrapper" class="dataTables_wrapper dt-bootstrap5">
+								<div class="row ">
+									<div class="col-sm-12">
+										<table id="datatables-column-search-text-inputs" class="table table-striped dataTable" style="width: 100%;"
+											aria-describedby="datatables-column-search-text-inputs_info" data-source="<%= admins_admin_users_admins_index_path(format: :json) %>">
+											<div class="loading col-12 mt-2" style="height: 20px">
+											</div>
+											<thead>
+												<tr>
+													<th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
+														rowspan="1" colspan="1" aria-sort="ascending" aria-label="NIP: activate to sort column descending"
+														style="width: 179px;">NIP</th>
+													<th class="sorting" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
+														colspan="1" aria-label="Nama: activate to sort column ascending" style="width: 179px;">Nama</th>
+													<th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
+														colspan="1" aria-label="Email: activate to sort column ascending" style="width: 179px;">
+														Email
+													</th>
+													<th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
+														colspan="1" aria-label="Nomor HP: activate to sort column ascending" style="width: 179px;">Nomor HP</th>
+													<th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
+														colspan="1" aria-label="Status: activate to sort column ascending" style="width: 179px;">Status
+													</th>
+                                                    <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
+														colspan="1" aria-label="Aksi: activate to sort column ascending" style="width: 179px;">Aksi
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+
+											</tbody>
+                                            <tfoot>
+												<tr>
+													<th rowspan="1" colspan="1">
+														<input type="text" class="form-control" placeholder="Search NIP">
+													</th>
+													<th rowspan="1" colspan="1">
+														<input type="text" class="form-control" placeholder="Search Nama">
+													</th>
+													<th rowspan="1" colspan="1">
+														<input type="text" class="form-control" placeholder="Search Email">
+													</th>
+													<th rowspan="1" colspan="1">
+														<input type="text" class="form-control" placeholder="Search Telepon">
+													</th>
+													<th rowspan="1" colspan="1">
+														<input type="text" class="form-control" placeholder="Search Status">
+													</th>
+													<th rowspan="1" colspan="1">
+														<input type="text" class="form-control d-none" placeholder="Search Aksi">
+													</th>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.onreadystatechange = function() {
+			if (document.readyState !== "complete") {
+				document.querySelector("#content").classList.add('d-none');
+				document.querySelector(
+					".load").style.visibility = "visible";
+			} else {
+				document.querySelector(
+					".load").style.display = "none";
+				document.querySelector("#content").classList.remove('d-none');
+
+			}
+		};
+	</script>
+

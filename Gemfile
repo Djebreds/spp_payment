@@ -48,8 +48,6 @@ gem "sassc-rails"
 # Jquery for datatables
 gem 'jquery-datatables'
 
-# Ajax for datatables server side
-gem 'ajax-datatables-rails'
 
 # Authentication
 gem "devise"
@@ -62,6 +60,9 @@ gem "recaptcha"
 
 # Active link
 gem 'active_link_to'
+
+# ActionView Helper
+gem 'draper'
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -91,3 +92,5 @@ group :test do
 end
 
 gem "terser", "~> 1.1"
+
+gem "ajax-datatables-rails", "~> 1.4"
