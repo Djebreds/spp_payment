@@ -1,5 +1,5 @@
 class PaymentMethod < ApplicationRecord
-  belongs_to :payment, dependent: :destroy
+  has_many :payment, dependent: :destroy
 
   validates :name, presence: true
 end

@@ -8,64 +8,66 @@
 
 		<ul class="sidebar-nav">
 			<li class="sidebar-header">Dashboard</li>
-			<li class="sidebar-item">
-				<a class="sidebar-link" href="#">
-					<i class="align-middle" data-feather="trello"></i> <span class="align-middle">Dashboard</span>
+			<li class="sidebar-item <%= 'active' if current_page?(admins_admin_authenticated_root_path) %>">
+				<a class="sidebar-link" href="<%= admins_admin_authenticated_root_path %>">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2 align-middle me-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+					<span class="align-middle">Dashboard</span>
 				</a>
 			</li>
 			<li class="sidebar-header">Data</li>
-			<li class="sidebar-item active">
+			<li class="sidebar-item <%= parent_nav_is_active?('/admins/admin/users/') %>">
 				<a href="#" class="sidebar-link"
 					data-bs-target="#users" data-bs-toggle="collapse" aria-expanded="false">
-					<i class="align-middle" data-feather="users"></i>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-middle me-2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
 					<span class="align-middle">Users</span>
 				</a>
-				<ul id="users" class="sidebar-dropdown list-unstyled collapse show"
-					data-bs-parent="#sidebar">
-					<li class="sidebar-item active">
-						<a href="#" class="sidebar-link">Admin</a>
+				<ul id="users" class="sidebar-dropdown list-unstyled collapse <%= 'show' if parent_nav_is_active?('/admins/admin/users/') %>" data-bs-parent="#sidebar">
+					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_users_admins_index_path) %>">
+						<a href="<%= admins_admin_users_admins_index_path %>" class="sidebar-link">Admin</a>
 					</li>
-					<li class="sidebar-item">
-						<a href="#" class="sidebar-link">Siswa</a>
+					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_users_students_index_path) %>">
+						<a href="<%= admins_admin_users_students_index_path %>" class="sidebar-link">Siswa</a>
 					</li>
-					<li class="sidebar-item">
-						<a href="#" class="sidebar-link">Staff</a>
+					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_users_staffs_index_path) %>">
+						<a href="<%= admins_admin_users_staffs_index_path %>" class="sidebar-link">Staff</a>
 					</li>
 				</ul>
 			</li>
-			<li class="sidebar-item">
-				<a class="sidebar-link" data-bs-target="#category"
+			<li class="sidebar-item <%= parent_nav_is_active?('/admins/admin/categories/') %>">
+				<a class="sidebar-link" data-bs-target="#categories"
 					href="#" data-bs-toggle="collapse" aria-expanded="false">
-					<i class="align-middle" data-feather="grid"></i>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid align-middle me-2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
 					<span class="align-middle">Kategori</span>
 				</a>
-				<ul id="category"
-					class="sidebar-dropdown list-unstyled collapse"
+				<ul id="categories" class="sidebar-dropdown list-unstyled collapse <%= 'show' if parent_nav_is_active?('/admins/admin/categories/') %> "
 					data-bs-parent="#sidebar">
-					<li class="sidebar-item">
-						<a href="#" class="sidebar-link">Angkatan</a>
+					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_generations_index_path) %>">
+						<a href="<%= admins_admin_categories_generations_index_path %>" class="sidebar-link">Angkatan</a>
 					</li>
-					<li class="sidebar-item">
-						<a href="#" class="sidebar-link">Jurusan</a>
+					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_majors_index_path) %> ">
+						<a href="<%= admins_admin_categories_majors_index_path %>" class="sidebar-link">Jurusan</a>
 					</li>
-					<li class="sidebar-item">
-						<a href="#" class="sidebar-link">Kelas</a>
+					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_class_rooms_index_path) %>">
+						<a href="<%= admins_admin_categories_class_rooms_index_path %>" class="sidebar-link">Kelas</a>
 					</li>
 				</ul>
 			</li>
-			<li class="sidebar-item">
-				<a class="sidebar-link" href="#">
-					<i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Budget SPP</span>
+			<li class="sidebar-item <%= 'active' if current_page?(admins_admin_budget_spps_index_path) %>">
+				<a class="sidebar-link" href="<%= admins_admin_budget_spps_index_path %>">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle me-2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+					<span class="align-middle">Budget SPP</span>
 				</a>
 			</li>
-			<li class="sidebar-item">
-				<a class="sidebar-link" href="#">
-					<i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Metode Pembayaran</span>
+			<li class="sidebar-item <%= 'active' if current_page?(admins_admin_payment_methods_index_path) %>">
+				<a class="sidebar-link" href="<%= admins_admin_payment_methods_index_path %>">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card align-middle me-2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+					<span class="align-middle">Metode Pembayaran</span>
 				</a>
 			</li>
-			<li class="sidebar-item">
-				<a class="sidebar-link" href="#">
-					<i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Pembayaran</span>
+			<li class="sidebar-item <%= 'active' if current_page?(admins_admin_payments_index_path) %>">
+				<a class="sidebar-link" href="<%= admins_admin_payments_index_path %>">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard align-middle me-2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+					<span class="align-middle">Pembayaran</span>
 				</a>
 			</li>
 		</ul>

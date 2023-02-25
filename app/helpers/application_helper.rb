@@ -1,5 +1,10 @@
 module ApplicationHelper
-  def active_class(link_path)
-    current_page?(link_path) ? "active" : ""
+  def parent_nav_is_active?(path)
+    rp = request.path
+    if rp == path
+      'active'
+    elsif rp.include? path #child page check
+      'active'
+    end
   end
 end
