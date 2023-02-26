@@ -10,32 +10,30 @@ class AdminDatatable < AjaxDatatablesRails::ActiveRecord
       email:       { source: "Admin.email",  cond: :like, searchable: true, orderable: true },
       phone:       { source: "Admin.phone", cond: :like, searchable: true, orderable: true },
       status:      { source: "Admin.status", cond: :like, searchable: true, orderable: true },
-      dt_actions:  { source: "AdminDecorator.dt_actions", searchale: false, orderale: false}
+      DT_RowId:    { cond: :null_value, searchable: false, orderable: false },
+      DT_actions:  { source: "AdminDecorator.DT_actions", cond: :null_value, searchable: false, orderable: false}
     }
   end
-  def initialize(params, opts = {})
-    @view = opts[:view_context]
-    super
-  end
+ 
 
 
   def data
     records.map do |record|
       {
-        nip:      record.decorate.nip,
-        name:     record.decorate.name,
-        email:    record.decorate.email,
-        phone: record.decorate.phone,
+        nip:      record.nip,
+        name:     record.name,
+        email:    record.email,
+        phone: record.phone,
         status:   record.decorate.status,
-        DT_RowId: record.decorate.id,
-        dt_actions: record.decorate.dt_actions
+        DT_RowId: record.id,
+        DT_actions: record.decorate.DT_actions
       }
     end
   end
 
   def get_raw_records
     # insert query here
-    Admin.where(roles: :admin).decorate
+    Admin.where(roles: :admin)
   end
 
 end

@@ -6,14 +6,6 @@ import 'select2';
 import 'plugins/datatables';
 import 'theme/theme';
 
-$('#datatables-column-search-text-inputs tfoot th.filter').each(function () {
-  var title = $(this).text();
-  $(this).html(
-    '<input type="text" class="form-control" placeholder="Search ' +
-      title +
-      '" />'
-  );
-});
 // DataTables
 var table = $('#datatables-column-search-text-inputs').DataTable({
   order: [],
@@ -32,14 +24,14 @@ var table = $('#datatables-column-search-text-inputs').DataTable({
   lengthChange: false,
   dom: 'Bfrtip',
   buttons: [
-    'copy',
-    'csv',
     {
       extend: 'print',
-      className: 'btn btn-primary btn-icon-split',
-      titleAttr: 'Stampa Tabella',
-      text: '<span class="icon text-white-50"><i class="fa fa-print"></i></span><span class="text"> Stampa</span>',
-      footer: false,
+      className: 'btn btn-secondary',
+      titleAttr: 'Print',
+      text: `<span class="icon text-white me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+      <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+      <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+    </svg></span><span class="text">Print</span>`,
       //autoPrint: false,
       customize: function (doc) {
         var now = new Date();
@@ -123,6 +115,12 @@ var table = $('#datatables-column-search-text-inputs').DataTable({
   ],
   columns: [
     {
+      data: 'DT_RowId',
+      render: function (data, type, row, meta) {
+        return meta.row + meta.settings._iDisplayStart + 1;
+      },
+    },
+    {
       data: 'nip',
     },
     {
@@ -138,16 +136,19 @@ var table = $('#datatables-column-search-text-inputs').DataTable({
       data: 'status',
     },
     {
-      data: 'dt_actions',
-    },
-  ],
-  columnDefs: [
-    {
+      data: 'DT_actions',
       searchable: false,
-      orderable: false,
-      targets: 0,
     },
   ],
+});
+
+$('#datatables-column-search-text-inputs tfoot th.filter').each(function () {
+  var title = $(this).text();
+  $(this).html(
+    '<input type="text" class="form-control" placeholder="Cari ' +
+      title +
+      '" />'
+  );
 });
 
 // Apply the search
@@ -160,14 +161,12 @@ table.columns().every(function () {
   });
 });
 
-$('.col-sm-12.col-md-6').first().append($('#add'));
-$('#add>button').click(function refreshData() {
-  table.ajax.reload(null, true);
+$('#search').on('keyup change clear', function () {
+  table.search(this.value).draw();
 });
-$('.col-sm-12.col-md-6:eq(1)').addClass('my-auto');
-$('.loading')
-  .appendTo(
-    '.col-sm-12>#datatables-column-search-text-inputs_wrapper>.row:eq(0)'
-  )
-  .first();
+
+$('.button-action').append($('.buttons-print'));
+$('.search-action').append($('.dataTables_filter'));
+$('.dataTables_filter').addClass('d-none');
+
 $('.loading').append($('div.dataTables_processing'));

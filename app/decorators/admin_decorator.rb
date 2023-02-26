@@ -25,7 +25,7 @@ class AdminDecorator < ApplicationDecorator
     end
   end
 
-  def dt_actions
+  def DT_actions
     # links = []
     # # links << h.link_to('Edit',   h.edit_admins_admin_users_admin_path(nip), class: )
     # # links << h.link_to("Dadang", h.edit_admins_admin_users_admin_path(nip), h.:class "btn btn-primary")
