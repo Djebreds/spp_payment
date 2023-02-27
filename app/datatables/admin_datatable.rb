@@ -2,8 +2,6 @@ class AdminDatatable < AjaxDatatablesRails::ActiveRecord
   self.db_adapter = :mysql2
 
   def view_columns
-    # Declare strings in this format: ModelName.column_name
-    # or in aliased_join_table.column_name format
     @view_columns ||= {
       nip:         { source: "Admin.nip", cond: :like, searchable: true, orderable: true },
       name:        { source: "Admin.name", cond: :like, searchable: true, orderable: true },
@@ -15,8 +13,6 @@ class AdminDatatable < AjaxDatatablesRails::ActiveRecord
     }
   end
  
-
-
   def data
     records.map do |record|
       {
@@ -32,7 +28,6 @@ class AdminDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    # insert query here
     Admin.where(roles: :admin)
   end
 

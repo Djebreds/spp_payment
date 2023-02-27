@@ -1,5 +1,32 @@
 // DataTables
 var table = $('#datatables-column-search-text-inputs').DataTable({
+  columns: [
+    {
+      data: 'DT_RowId',
+      render: function (data, type, row, meta) {
+        return meta.row + meta.settings._iDisplayStart + 1;
+      },
+    },
+    {
+      data: 'nip',
+    },
+    {
+      data: 'name',
+    },
+    {
+      data: 'email',
+    },
+    {
+      data: 'phone',
+    },
+    {
+      data: 'status',
+    },
+    {
+      data: 'DT_actions',
+      searchable: false,
+    },
+  ],
   order: [],
   language: {
     processing: `
@@ -103,33 +130,6 @@ var table = $('#datatables-column-search-text-inputs').DataTable({
       init: function (api, node, config) {
         $(node).removeClass('dt-button');
       },
-    },
-  ],
-  columns: [
-    {
-      data: 'DT_RowId',
-      render: function (data, type, row, meta) {
-        return meta.row + meta.settings._iDisplayStart + 1;
-      },
-    },
-    {
-      data: 'nip',
-    },
-    {
-      data: 'name',
-    },
-    {
-      data: 'email',
-    },
-    {
-      data: 'phone',
-    },
-    {
-      data: 'status',
-    },
-    {
-      data: 'DT_actions',
-      searchable: false,
     },
   ],
 });

@@ -19,15 +19,14 @@ Rails.application.routes.draw do
           get 'payment_methods/index'
           get 'budget_spps/index'
           namespace :categories do
+            resources :majors, except: :show
             get 'generations/index'
             get 'class_rooms/index' 
-            resource :major, except: :show
           end
           namespace :users do
             get 'staffs/index'
             get 'students/index'
-            resource :admin, only: [:index, :show]
-            get 'admins/index'
+            resources :admins, only: [:index, :show]
           end
         end
         namespace :staff do

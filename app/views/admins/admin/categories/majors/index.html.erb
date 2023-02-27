@@ -1,5 +1,5 @@
 <% content_for :head do %>
-    <%= javascript_import_module_tag "categoriesDataTable" %>
+    <%= javascript_import_module_tag "pages/categories/majorsDataTable" %>
 <% end %>
 
 <style>
@@ -100,7 +100,7 @@
                             <div class="row ">
                                 <div class="col-sm-12">
                                     <table id="datatables-column-search-text-inputs" class="table table-striped dataTable" style="width: 100%;"
-                                        aria-describedby="datatables-column-search-text-inputs_info" data-source="<%= admins_admin_categories_majors_index_path(format: :json) %>">
+                                        aria-describedby="datatables-column-search-text-inputs_info" data-source="<%= admins_admin_categories_majors_path(format: :json) %>">
                                         <div class="loading col-12 mt-2" style="height: 20px">
                                         </div>
                                         <thead>

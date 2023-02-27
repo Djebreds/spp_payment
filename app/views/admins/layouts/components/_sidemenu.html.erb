@@ -20,8 +20,8 @@
 					<span class="align-middle">Users</span>
 				</a>
 				<ul id="users" class="sidebar-dropdown list-unstyled collapse <%= 'show' if parent_nav_is_active?('/admins/admin/users/') %>" data-bs-parent="#sidebar">
-					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_users_admins_index_path) %>">
-						<a href="<%= admins_admin_users_admins_index_path %>" class="sidebar-link">Admin</a>
+					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_users_admins_path) %>">
+						<a href="<%= admins_admin_users_admins_path %>" class="sidebar-link">Admin</a>
 					</li>
 					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_users_students_index_path) %>">
 						<a href="<%= admins_admin_users_students_index_path %>" class="sidebar-link">Siswa</a>
@@ -42,8 +42,8 @@
 					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_generations_index_path) %>">
 						<a href="<%= admins_admin_categories_generations_index_path %>" class="sidebar-link">Angkatan</a>
 					</li>
-					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_majors_index_path) %> ">
-						<a href="<%= admins_admin_categories_majors_index_path %>" class="sidebar-link">Jurusan</a>
+					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_majors_path) %> ">
+						<a href="<%= admins_admin_categories_majors_path %>" class="sidebar-link">Jurusan</a>
 					</li>
 					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_class_rooms_index_path) %>">
 						<a href="<%= admins_admin_categories_class_rooms_index_path %>" class="sidebar-link">Kelas</a>

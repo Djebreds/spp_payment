@@ -2,13 +2,13 @@ class MajorDatatable < AjaxDatatablesRails::ActiveRecord
   self.db_adapter = :mysql2
 
   def view_columns
-    # Declare strings in this format: ModelName.column_name
-    # or in aliased_join_table.column_name format
     @view_columns ||= {
       name:       { source: "Major.name", cond: :like, searchable: true, orderable: true },
       short:      { source: "Major.short", cond: :like, searchable: true, orderable: true },
       created_at: { source: "Major.created_at", cond: :like, searchable: true, orderable: true },
-      updated_at: { source: "Major.updated_at", cond: :like, searchable: true, orderable: true }
+      updated_at: { source: "Major.updated_at", cond: :like, searchable: true, orderable: true },
+      DT_RowId: { cond: :null_value, searchable: false, orderable: false },
+      DT_actions: { source: "MajorDecorator.DT_actions", cond: :null_value, searchable: false, orderable: false}
     }
   end
 
@@ -17,8 +17,10 @@ class MajorDatatable < AjaxDatatablesRails::ActiveRecord
       {
         name:       record.name,
         short:      record.short,
-        created_at: record.created_at
-        updated_at: record.updated_at
+        created_at: record.decorate.created_at,
+        updated_at: record.decorate.updated_at,
+        DT_RowId:   record.id,
+        DT_actions: record.decorate.DT_actions
       }
     end
   end
