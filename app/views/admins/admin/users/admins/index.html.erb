@@ -1,5 +1,6 @@
 <% content_for :head do %>
     <%= javascript_import_module_tag "pages/users/adminsDataTable" %>
+    <%= javascript_import_module_tag "pages/users/adminsSweetalert" %>
 <% end %>
 <style>
     div.dataTables_wrapper div.dataTables_processing {
@@ -106,7 +107,7 @@
                                             <tr>
                                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
                                                     rowspan="1" colspan="1" aria-sort="ascending" aria-label="NO: activate to sort column descending"
-                                                    style="width: 179px;">NO</th>
+                                                    style="width: 50px;">NO</th>
                                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
                                                     rowspan="1" colspan="1" aria-sort="ascending" aria-label="NIP: activate to sort column descending"
                                                     style="width: 179px;">NIP</th>
@@ -118,7 +119,7 @@
                                                 </th>
                                                 <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
                                                     colspan="1" aria-label="Nomor HP: activate to sort column ascending" style="width: 179px;">Nomor HP</th>
-                                                <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
+                                                <th class="sorting" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
                                                     colspan="1" aria-label="Status: activate to sort column ascending" style="width: 179px;">Status
                                                 </th>
                                                 <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"

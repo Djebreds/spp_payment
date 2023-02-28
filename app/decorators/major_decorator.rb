@@ -10,11 +10,15 @@ class MajorDecorator < ApplicationDecorator
   #     end
   #   end
   def created_at
-    object.created_at.strftime("%A, %e %B %Y %H:%M:%S %p")
+    h.content_tag :span, class: 'time' do 
+      object.created_at.strftime("%A, %e %B %Y %H:%M:%S %p")
+    end
   end
 
   def updated_at
-    object.updated_at.strftime("%A, %e %B %Y %H:%M:%S %p")
+    h.content_tag :span, class: 'time' do 
+      object.updated_at.strftime("%A, %e %B %Y %H:%M:%S %p")
+    end
   end
 
   def DT_actions

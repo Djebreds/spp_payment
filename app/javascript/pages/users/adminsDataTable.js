@@ -21,6 +21,8 @@ var table = $('#datatables-column-search-text-inputs').DataTable({
     },
     {
       data: 'status',
+      searchable: true,
+      orderable: true,
     },
     {
       data: 'DT_actions',

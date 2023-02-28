@@ -13,3 +13,4 @@ pin_all_from "app/javascript/plugins", under: "plugins", preload: true
 # pin "adminsDataTable", to: "app/javascript/pages/users/adminsDataTable.js"
 pin_all_from "app/javascript/pages", under: "pages"
 pin "notyf", to: "https://ga.jspm.io/npm:notyf@3.10.0/notyf.es.js"
+pin "sweetalert2", to: "https://ga.jspm.io/npm:sweetalert2@11.7.2/dist/sweetalert2.all.js"

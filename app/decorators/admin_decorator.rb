@@ -15,13 +15,9 @@ class AdminDecorator < ApplicationDecorator
   def status
     case object.status
     when 'active'
-      h.content_tag(:span, class: "badge rounded-pill bg-success") do
-        object.status
-      end
+      h.content_tag(:span, object.status, class: "badge rounded-pill bg-success")
     when 'inactive'
-      h.content_tag(:span, class: "badge rounded-pill bg-danger") do
-        object.status
-      end
+      h.content_tag(:span, object.status, class: "badge rounded-pill bg-danger")
     end
   end
 
