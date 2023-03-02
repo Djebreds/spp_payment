@@ -17,5 +17,9 @@ class Admins::Admin::Categories::MajorsController < ApplicationController
   end
 
   def destroy
+    @major = Major.find(params[:id])
+    @major.destroy
+
+    redirect_to admins_admin_categories_majors_path
   end
 end

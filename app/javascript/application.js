@@ -5,4 +5,5 @@ import 'jquery';
 import 'select2';
 import 'plugins/datatables';
 import 'plugins/notification';
+import 'plugins/sweetalert';
 import 'theme/theme';
