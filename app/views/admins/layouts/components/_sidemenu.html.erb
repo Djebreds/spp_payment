@@ -45,8 +45,8 @@
 					<li class="sidebar-item <%= current_page?(admins_admin_categories_majors_path) || parent_nav_is_active?('/admins/admin/categories/majors/') ? 'active' : '' %>">
 						<a href="<%= admins_admin_categories_majors_path %>" class="sidebar-link">Jurusan</a>
 					</li>
-					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_class_rooms_index_path) %>">
-						<a href="<%= admins_admin_categories_class_rooms_index_path %>" class="sidebar-link">Kelas</a>
+					<li class="sidebar-item <%= current_page?(admins_admin_categories_class_rooms_path) || parent_nav_is_active?('/admins/admin/categories/class_rooms/') ? 'active' : '' %>">
+						<a href="<%= admins_admin_categories_class_rooms_path %>" class="sidebar-link">Kelas</a>
 					</li>
 				</ul>
 			</li>

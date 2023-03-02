@@ -10,5 +10,4 @@ pin_all_from "app/javascript/theme", under: "theme", preload: true
 pin "select2", to: "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"
 pin_all_from "app/javascript/plugins", under: "plugins", preload: true
 pin_all_from "app/javascript/pages", under: "pages", preload: true
-pin "notyf", to: "https://ga.jspm.io/npm:notyf@3.10.0/notyf.es.js"
 pin "sweetalert2", to: "https://ga.jspm.io/npm:sweetalert2@11.7.2/dist/sweetalert2.all.js"

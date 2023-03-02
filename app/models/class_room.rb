@@ -1,6 +1,5 @@
 class ClassRoom < ApplicationRecord
-  belongs_to :major
-  has_many :students, dependent: :delete_all
+  has_many :class_majors, dependent: :destroy
 
-  validates :name, presence: true, length: { minimum: 4, maximum: 50 }
+  validates :name, presence: true
 end

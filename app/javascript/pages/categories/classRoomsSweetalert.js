@@ -1,18 +1,18 @@
 import Swal from 'sweetalert2';
 import * as sweetalert2 from 'sweetalert2';
 
-document.querySelectorAll('.major').forEach((el) => {
+document.querySelectorAll('.class-room').forEach((el) => {
   el.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();
-    var id = e.target.getAttribute('data-major-id');
+    var id = e.target.getAttribute('data-class-room-id');
     console.log(id);
     confirmDelete(id);
   });
 });
 
 function confirmDelete(id) {
-  var form = $('#delete-major-' + id);
+  var form = $('#delete-class-room-' + id);
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-danger mx-2',

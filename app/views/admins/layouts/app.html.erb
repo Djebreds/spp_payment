@@ -9,6 +9,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= yield :head %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notyf/3.10.0/notyf.min.css" integrity="sha512-ZX18S8AwqoIm9QCd1EYun82IryFikdJt7lxj6583zx5Rvr5HoreO9tWY6f2VhSxvK+48vYFSf4zFtX/t2ge62g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notyf/3.10.0/notyf.min.js" integrity="sha512-467grL09I/ffq86LVdwDzi86uaxuAhFZyjC99D6CC1vghMp1YAs+DqCgRvhEtZIKX+o9lR0F2bro6qniyeCMEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
 
   <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
@@ -16,16 +18,31 @@
         <%= render "admins/layouts/components/sidemenu" %>
         <div class="main">
             <%= render "admins/layouts/components/header" %>
+            <% if flash.any? %>
+              <script>
+                <% flash.each do |key ,value| %>
+                  var notyf = new Notyf({
+                    ripple: true,
+                    dismissible: true,
+                    duration: 5000,
+                    position: {
+                      x: 'right',
+                      y: 'top',
+                    },
+                  });
+                  <% type = key.to_s.gsub('alert', 'error').gsub('notice', 'success') %>
+                  notyf.<%= type %>('<%= value %>')
+                <% end %>
+              </script>
+            <% end %>
             <main class="content">
-                <div class="container-fluid">
-                    <p class="notice"><%= notice %></p>
-                    <p class="alert"><%= alert %></p>
+                <div class="container-fluid">  
                     <%= yield %>
                 </div>
             </main>
             <%= render "admins/layouts/components/footer" %>
         </div>
     </div>
-  <%= yield :footer %>
+    
   </body>
 </html>

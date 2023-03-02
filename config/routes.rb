@@ -21,7 +21,9 @@ Rails.application.routes.draw do
           namespace :categories do
             resources :majors, except: :show
             get 'generations/index'
-            get 'class_rooms/index' 
+            resources :class_rooms, except: :show do
+              resources :class_majors, except: :show
+            end
           end
           namespace :users do
             get 'staffs/index'

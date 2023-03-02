@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_02_100409) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_02_194107) do
   create_table "admins", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -44,12 +44,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_100409) do
     t.index ["generation_id"], name: "index_budget_spps_on_generation_id"
   end
 
-  create_table "class_rooms", charset: "utf8mb4", force: :cascade do |t|
+  create_table "class_majors", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
+    t.bigint "class_room_id", null: false
     t.bigint "major_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["major_id"], name: "index_class_rooms_on_major_id"
+    t.index ["class_room_id"], name: "index_class_majors_on_class_room_id"
+    t.index ["major_id"], name: "index_class_majors_on_major_id"
+  end
+
+  create_table "class_rooms", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "generations", charset: "utf8mb4", force: :cascade do |t|
@@ -114,9 +122,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_100409) do
     t.text "address"
     t.string "phone", limit: 13
     t.integer "status", limit: 1, null: false
-    t.bigint "class_room_id", null: false
     t.bigint "generation_id", null: false
-    t.index ["class_room_id"], name: "index_students_on_class_room_id"
+    t.bigint "class_major_id", null: false
+    t.index ["class_major_id"], name: "index_students_on_class_major_id"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["generation_id"], name: "index_students_on_generation_id"
     t.index ["nis", "nisn"], name: "index_students_on_nis_and_nisn", unique: true
@@ -124,12 +132,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_100409) do
   end
 
   add_foreign_key "budget_spps", "generations"
-  add_foreign_key "class_rooms", "majors"
+  add_foreign_key "class_majors", "class_rooms"
+  add_foreign_key "class_majors", "majors"
   add_foreign_key "monthly_spps", "budget_spps"
   add_foreign_key "payments", "admins"
   add_foreign_key "payments", "budget_spps", column: "budget_spps_id"
   add_foreign_key "payments", "payment_methods", column: "payment_methods_id"
   add_foreign_key "payments", "students"
-  add_foreign_key "students", "class_rooms"
+  add_foreign_key "students", "class_majors"
   add_foreign_key "students", "generations"
 end

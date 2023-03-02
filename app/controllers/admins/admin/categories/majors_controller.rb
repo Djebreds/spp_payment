@@ -16,11 +16,12 @@ class Admins::Admin::Categories::MajorsController < ApplicationController
     @major = Major.new(major_params)
 
     if @major.save
-      redirect_to admins_admin_categories_majors_path, notice: 'Jurusan berhasil ditambahkan'
+      flash[:notice] = "Jurusan berhasil ditambahkan"
+      redirect_to admins_admin_categories_majors_path
     else
+      flash[:alert] = "Jurusan gagal ditambahkan"
       render :new, status: :unprocessable_entity
     end
-
   end
 
   def edit
@@ -28,19 +29,27 @@ class Admins::Admin::Categories::MajorsController < ApplicationController
 
   def update
     if @major.update(major_params)
-      redirect_to admins_admin_categories_majors_path, notice: 'Jurusan berhasil diubah'
+      flash[:notice] = "Jurusan berhasil diubah"
+      redirect_to admins_admin_categories_majors_path
     else
+      flash[:alert] = "Jurusan gagal diubah"
       render :edit
     end
   end
 
   def destroy
-    @major.destroy!
-
-    redirect_to admins_admin_categories_majors_path, notice: 'Jurusan berhasil dihapus'
+    if @major.destroy!
+      flash[:notice] = 'Jurusan berhasil dihapus'
+      redirect_to admins_admin_categories_majors_path
+    else
+      flash[:alert] = 'Jurusan gagal dihapus'
+      redirect_to admins_admin_categories_majors_path
+    end
+    
   end
 
   private
+
   def set_major
     @major = Major.find(params[:id])
   end

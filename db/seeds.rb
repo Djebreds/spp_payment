@@ -25,17 +25,26 @@ unless Major.any?
 end
 
 unless ClassRoom.any?
-  ClassRoom.create!(name: "XII RPL 1", major_id: 1)
-  ClassRoom.create!(name: "XII RPL 2", major_id: 1)
-  ClassRoom.create!(name: "XII TKJ 1", major_id: 2)
-  ClassRoom.create!(name: "XII TKJ 2", major_id: 2)
-  ClassRoom.create!(name: "XII TGM 1", major_id: 5)
-  ClassRoom.create!(name: "XII TGM 2", major_id: 5)
-  ClassRoom.create!(name: "XII TGM 3", major_id: 5)
-  ClassRoom.create!(name: "XII MM 1", major_id: 3)
-  ClassRoom.create!(name: "XII MM 2", major_id: 3)
+  ClassRoom.create!([
+    { name: "XIII" },
+    { name: "XII" },
+    { name: "XI" },
+    { name: "X" },
+  ])
 end
 
+unless ClassMajor.any?
+  ClassMajor.create!([
+    { name: "XIII", class_room_id: 1, major_id: 1 },
+    { name: "XIII", class_room_id: 1, major_id: 2 },
+    { name: "XII", class_room_id: 2, major_id: 3 },
+    { name: "XII", class_room_id: 2, major_id: 2 },
+    { name: "XI", class_room_id: 3, major_id: 3 },
+    { name: "XI", class_room_id: 3, major_id: 4 },
+    { name: "X", class_room_id: 4, major_id: 4 },
+    { name: "X", class_room_id: 4, major_id: 5 },
+  ])
+end
 
 unless BudgetSpp.any?
   BudgetSpp.create!([
@@ -85,7 +94,7 @@ unless Student.any?
       nis: "123456789",
       phone: "6282121491054", 
       status: :active, 
-      class_room_id: 1, 
+      class_major_id: 1, 
       generation_id: 1,
       address: "Jl. Soreang Cipatik"
     }
