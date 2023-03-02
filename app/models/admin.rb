@@ -1,5 +1,5 @@
 class Admin < ApplicationRecord
-  has_many :payment, dependent: :destroy
+  has_many :payments, dependent: :destroy
   
   validates :name, :address, presence: true
   validates :nip, :phone, presence: true, uniqueness: true

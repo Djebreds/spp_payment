@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_23_180928) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_02_100409) do
   create_table "admins", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -37,12 +37,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_180928) do
   end
 
   create_table "budget_spps", charset: "utf8mb4", force: :cascade do |t|
+    t.string "year", null: false
     t.bigint "generation_id", null: false
-    t.bigint "monthly_spp_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["generation_id"], name: "index_budget_spps_on_generation_id"
-    t.index ["monthly_spp_id"], name: "index_budget_spps_on_monthly_spp_id"
   end
 
   create_table "class_rooms", charset: "utf8mb4", force: :cascade do |t|
@@ -67,21 +66,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_180928) do
   end
 
   create_table "monthly_spps", charset: "utf8mb4", force: :cascade do |t|
-    t.string "year", null: false
-    t.decimal "januari", precision: 10, null: false
-    t.decimal "februari", precision: 10, null: false
-    t.decimal "maret", precision: 10, null: false
-    t.decimal "april", precision: 10, null: false
-    t.decimal "mei", precision: 10, null: false
-    t.decimal "juni", precision: 10, null: false
-    t.decimal "juli", precision: 10, null: false
-    t.decimal "agustus", precision: 10, null: false
-    t.decimal "september", precision: 10, null: false
-    t.decimal "oktober", precision: 10, null: false
-    t.decimal "november", precision: 10, null: false
-    t.decimal "desember", precision: 10, null: false
+    t.string "month", null: false
+    t.decimal "amount", precision: 10, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "budget_spp_id", null: false
+    t.index ["budget_spp_id"], name: "index_monthly_spps_on_budget_spp_id"
   end
 
   create_table "payment_methods", charset: "utf8mb4", force: :cascade do |t|
@@ -134,8 +124,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_180928) do
   end
 
   add_foreign_key "budget_spps", "generations"
-  add_foreign_key "budget_spps", "monthly_spps"
   add_foreign_key "class_rooms", "majors"
+  add_foreign_key "monthly_spps", "budget_spps"
   add_foreign_key "payments", "admins"
   add_foreign_key "payments", "budget_spps", column: "budget_spps_id"
   add_foreign_key "payments", "payment_methods", column: "payment_methods_id"

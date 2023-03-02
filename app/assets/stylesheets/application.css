@@ -14,5 +14,4 @@
 *= require datatables
  *= require_self
  *= require theme/theme
- *= require theme/bootstrap-icons
  */

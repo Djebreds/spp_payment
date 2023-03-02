@@ -36,37 +36,35 @@ unless ClassRoom.any?
   ClassRoom.create!(name: "XII MM 2", major_id: 3)
 end
 
-unless MonthlySpp.any?
-  MonthlySpp.create!([
-    {
-      year: "2018", januari: 100000, februari: 100000, 
-      maret: 100000, april: 100000, mei: 100000, 
-      juni: 1000000, juli: 1000000, agustus: 1000000, 
-      september: 1000000, oktober: 100000, november: 100000,
-      desember: 100000
-    },
-    {
-      year: "2019", januari: 100000, februari: 100000, 
-      maret: 100000, april: 100000, mei: 100000, 
-      juni: 1000000, juli: 1000000, agustus: 1000000, 
-      september: 1000000, oktober: 100000, november: 100000,
-      desember: 100000
-    },
-    {
-      year: "2020", januari: 100000, februari: 100000, 
-      maret: 100000, april: 100000, mei: 100000, 
-      juni: 1000000, juli: 1000000, agustus: 1000000, 
-      september: 1000000, oktober: 100000, november: 100000,
-      desember: 100000
-    },
-  ])
-end
 
 unless BudgetSpp.any?
   BudgetSpp.create!([
-    { generation_id: 1, monthly_spp_id: 1 },
-    { generation_id: 1, monthly_spp_id: 2 },
-    { generation_id: 1, monthly_spp_id: 3 }
+    { year: '2018', generation_id: 1},
+    { year: '2019', generation_id: 1},
+    { year: '2020', generation_id: 1},
+    { year: '2019', generation_id: 2},
+    { year: '2020', generation_id: 2},
+    { year: '2021', generation_id: 2},
+    { year: '2020', generation_id: 3},
+    { year: '2021', generation_id: 3},
+    { year: '2022', generation_id: 3}
+    ])
+  end
+  
+unless MonthlySpp.any?
+  MonthlySpp.create!([
+    { month: 'Januari', amount: 200000, budget_spp_id: 1 },
+    { month: 'Februari', amount: 200000, budget_spp_id: 1 },
+    { month: 'Maret', amount: 200000, budget_spp_id: 1 },
+    { month: 'April', amount: 200000, budget_spp_id: 1 },
+    { month: 'Mei', amount: 200000, budget_spp_id: 1 },
+    { month: 'Juni', amount: 200000, budget_spp_id: 1 },
+    { month: 'Juli', amount: 200000, budget_spp_id: 1 },
+    { month: 'Agustus', amount: 200000, budget_spp_id: 1 },
+    { month: 'September', amount: 200000, budget_spp_id: 1 },
+    { month: 'Oktober', amount: 200000, budget_spp_id: 1 },
+    { month: 'November', amount: 200000, budget_spp_id: 1 },
+    { month: 'Desember', amount: 200000, budget_spp_id: 1 },
   ])
 end
 

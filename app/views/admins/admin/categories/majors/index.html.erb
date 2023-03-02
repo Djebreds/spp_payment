@@ -1,6 +1,6 @@
 <% content_for :head do %>
     <%= javascript_import_module_tag "pages/categories/majorsDataTable" %>
-    <%= javascript_import_module_tag "pages/categories/majorsSweetalert"%>
+    <%= javascript_import_module_tag "pages/categories/majorsSweetalert" %>
 <% end %>
 
 <style>
@@ -80,10 +80,10 @@
                     <div id="content" class="d-none">
                         <div id="action" class="row justify-content-between align-items-center">
                             <div class="col-md-9 text-center text-md-start button-action align-items-center ">
-                                <a href="#" class="btn btn-success">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                <a href="<%= new_admins_admin_categories_major_path %>" class="btn btn-success">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmarks-fill" viewBox="0 0 16 16">
+                                <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z"/>
+                                <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z"/>
                                 </svg>
                                  Tambah Jurusan </a>
                             </div>
@@ -107,21 +107,21 @@
                                             <tr>
                                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
                                                     rowspan="1" colspan="1" aria-sort="ascending" aria-label="NO: activate to sort column descending"
-                                                    style="width: 179px;">NO</th>
+                                                    >NO</th>
                                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
                                                     rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nama: activate to sort column descending"
-                                                    style="width: 179px;">Nama</th>
+                                                    >Nama</th>
                                                 <th class="sorting" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
-                                                    colspan="1" aria-label="Singkatan: activate to sort column ascending" style="width: 179px;">Singkatan</th>
+                                                    colspan="1" aria-label="Singkatan: activate to sort column ascending">Singkatan</th>
                                                 <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
-                                                    colspan="1" aria-label="Tanggal Dibuat: activate to sort column ascending" style="width: 179px;">
+                                                    colspan="1" aria-label="Tanggal Dibuat: activate to sort column ascending">
                                                     Tanggal Dibuat
                                                 </th>
                                                 <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
-                                                    colspan="1" aria-label="Tanggal Diperbaharui: activate to sort column ascending" style="width: 179px;">Tanggal Diperbaharui</th>
+                                                    colspan="1" aria-label="Tanggal Diperbaharui: activate to sort column ascending">Tanggal Diperbaharui</th>
                                                 
                                                 <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
-                                                    colspan="1" aria-label="Aksi: activate to sort column ascending" style="width: 179px;">Aksi
+                                                    colspan="1" aria-label="Aksi: activate to sort column ascending">Aksi
                                                 </th>
                                             </tr>
                                         </thead>
@@ -134,10 +134,10 @@
                                                     <input type="text" class="form-control d-none" placeholder="Search NO">
                                                 <th>
                                                 <th rowspan="1" colspan="1">
-                                                    <input type="text" class="form-control" placeholder="Search Singkatan">
+                                                    <input type="text" class="form-control" placeholder="Search Nama">
                                                 </th>
                                                 <th rowspan="1" colspan="1">
-                                                    <input type="text" class="form-control" placeholder="Search Nama">
+                                                    <input type="text" class="form-control" placeholder="Search Singkatan">
                                                 </th>
                                                 <th rowspan="1" colspan="1">
                                                     <input type="text" class="form-control" placeholder="Search Tanggal Dibuat">

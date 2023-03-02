@@ -1,5 +1,5 @@
 class Student < ApplicationRecord
-  has_many :payment, dependent: :destroy
+  has_many :payments, dependent: :delete_all
   belongs_to :class_room
   belongs_to :generation
   

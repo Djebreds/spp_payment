@@ -1,5 +1,5 @@
 class Major < ApplicationRecord
-  has_many :class_room, dependent: :destroy
+  has_many :class_rooms, dependent: :delete_all
 
-  validates :name, :short, presence: true, length: { minimum: 2, maximum: 50 }
+  validates :name, :short, presence: true
 end

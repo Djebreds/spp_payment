@@ -1,5 +1,4 @@
 class BudgetSpp < ApplicationRecord
-  belongs_to :generation, dependent: :destroy
-  has_many :monthly_spp, dependent: :destroy
-  has_many :payment, dependent: :destroy
+  belongs_to :generation
+  has_many :monthly_spps, dependent: :delete_all
 end

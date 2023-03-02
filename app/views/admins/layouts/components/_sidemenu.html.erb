@@ -42,7 +42,7 @@
 					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_generations_index_path) %>">
 						<a href="<%= admins_admin_categories_generations_index_path %>" class="sidebar-link">Angkatan</a>
 					</li>
-					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_majors_path) %> ">
+					<li class="sidebar-item <%= current_page?(admins_admin_categories_majors_path) || parent_nav_is_active?('/admins/admin/categories/majors/') ? 'active' : '' %>">
 						<a href="<%= admins_admin_categories_majors_path %>" class="sidebar-link">Jurusan</a>
 					</li>
 					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_categories_class_rooms_index_path) %>">
