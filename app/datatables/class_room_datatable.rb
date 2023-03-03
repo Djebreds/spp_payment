@@ -23,6 +23,6 @@ class ClassRoomDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    ClassRoom.includes(:class_majors)
+    ClassRoom.all
   end
 end

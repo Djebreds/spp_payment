@@ -22,7 +22,7 @@ Rails.application.routes.draw do
             resources :majors, except: :show
             get 'generations/index'
             resources :class_rooms, except: :show do
-              resources :class_majors, except: :show
+              resources :class_room_majors, except: :show
             end
           end
           namespace :users do

@@ -1,6 +1,6 @@
-class CreateClassMajors < ActiveRecord::Migration[7.0]
+class CreateClassRoomMajors < ActiveRecord::Migration[7.0]
   def change
-    create_table :class_majors do |t|
+    create_table :class_room_majors do |t|
       t.string :name, null: false
 
       t.references :class_room, null: false, foreign_key: true
