@@ -1,0 +1,183 @@
+<% content_for :head do %>
+    <%= javascript_import_module_tag "pages/categories/classRoomMajorsDataTable" %>
+    <%= javascript_import_module_tag "pages/categories/classRoomMajorsSweetalert" %>
+<% end %>
+
+<style>
+    div.dataTables_wrapper div.dataTables_processing {
+        background-color: #fff !important;
+
+    }
+
+    .loading>#datatables-column-search-text-inputs_processing {
+        width: 100%;
+        position: relative;
+    }
+
+    div.dataTables_wrapper div.dataTables_processing .progress {
+        background-color: #fff !important;
+        width: 100%;
+    }
+
+    div.dataTables_wrapper div.dataTables_processing {
+        left: 0;
+        margin-left: 0px;
+        margin-top: 0px;
+        padding: 0px;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 200px;
+    }
+
+    .progress-bar {
+        height: 4px;
+        background-color: rgba(5, 114, 206, 0.2);
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .progress-bar-value {
+        width: 100%;
+        height: 100%;
+        background-color: #3f80ea;
+        animation: indeterminateAnimation 1s infinite linear;
+        transform-origin: 0% 50%;
+    }
+
+    @keyframes indeterminateAnimation {
+        0% {
+        transform:  translateX(0) scaleX(0);
+        }
+        40% {
+        transform:  translateX(0) scaleX(0.4);
+        }
+        100% {
+        transform:  translateX(100%) scaleX(0.5);
+        }
+    }
+</style>
+<div class="container-fluid p-0">
+    <h1 class="mb-3">Data Kelas Jurusan</h1>
+    <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<%= admins_admin_authenticated_root_path %>">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kategori</li>
+            <li class="breadcrumb-item"><a href="<%= admins_admin_categories_class_rooms_path %>">Kelas</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @class_room.id %></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kelas Jurusan</li>
+        </ol>
+    </nav>
+    <div class="row position-relative">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="load my-5">
+                        <div class="d-flex justify-content-center" style="z-index: 999;">
+                            <div class="spinner-border text-primary fs-4" role="status" style="width: 3rem; height: 3rem;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="content" class="d-none">
+                        <div id="action" class="row justify-content-between align-items-center">
+                            <div class="col-md-9 text-center text-md-start button-action align-items-center ">
+                                <a href="<%= new_admins_admin_categories_class_room_class_room_major_path(@class_room) %>" class="btn btn-success">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmarks-fill" viewBox="0 0 16 16">
+                                <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z"/>
+                                <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z"/>
+                                </svg>
+                                 Tambah Kelas Jurusan </a>
+                            </div>
+                            <div class="col-md-3 search-action">
+                                <div class="d-flex gap-3 my-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                    <input type="text" class="form-control form-control-md" id="search" placeholder="Cari data...">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="datatables-column-search-text-inputs_wrapper" class="dataTables_wrapper dt-bootstrap5">
+                            <div class="row ">
+                                <div class="col-sm-12">
+                                    <table id="datatables-column-search-text-inputs" class="table table-striped dataTable" style="width: 100%;"
+                                        aria-describedby="datatables-column-search-text-inputs_info" data-source="<%= admins_admin_categories_class_room_class_room_majors_path(format: :json) %>">
+                                        <div class="loading col-12 mt-2" style="height: 20px">
+                                        </div>
+                                        <thead>
+                                            <tr>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
+                                                    rowspan="1" colspan="1" aria-sort="ascending" aria-label="NO: activate to sort column descending"
+                                                    >NO</th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
+                                                    rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nama: activate to sort column descending"
+                                                    >Kelas</th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
+                                                    rowspan="1" colspan="1" aria-sort="ascending" aria-label="Nama: activate to sort column descending"
+                                                    >Jurusan</th>
+                                                <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
+                                                    colspan="1" aria-label="Tanggal Dibuat: activate to sort column ascending">
+                                                    Tanggal Dibuat
+                                                </th>
+                                                <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
+                                                    colspan="1" aria-label="Tanggal Diperbaharui: activate to sort column ascending">Tanggal Diperbaharui</th>
+                                                
+                                                <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
+                                                    colspan="1" aria-label="Aksi: activate to sort column ascending">Aksi
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                        <tfoot>
+                                            </th>
+                                                <tr rowspan="1" colspan="1">
+                                                    <input type="text" class="form-control d-none" placeholder="Search NO">
+                                                <th>
+                                                <th rowspan="1" colspan="1">
+                                                    <input type="text" class="form-control" placeholder="Search Kelas">
+                                                </th>
+                                                <th rowspan="1" colspan="1">
+                                                    <input type="text" class="form-control" placeholder="Search Jurusan">
+                                                </th>
+                                                <th rowspan="1" colspan="1">
+                                                    <input type="text" class="form-control" placeholder="Search Tanggal Dibuat">
+                                                </th>
+                                                <th rowspan="1" colspan="1">
+                                                    <input type="text" class="form-control" placeholder="Search Tanggal Diperbaharui">
+                                                </th>                                                
+                                                <th rowspan="1" colspan="1">
+                                                    <input type="text" class="form-control d-none" placeholder="Search Aksi">
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.onreadystatechange = function() {
+        if (document.readyState !== "complete") {
+            document.querySelector("#content").classList.add('d-none');
+            document.querySelector(
+                ".load").style.visibility = "visible";
+        } else {
+            document.querySelector(
+                ".load").style.display = "none";
+            document.querySelector("#content").classList.remove('d-none');
+
+        }
+    };
+
+    
+</script>
+
+

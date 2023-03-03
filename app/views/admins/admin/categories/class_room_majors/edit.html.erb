@@ -1,11 +1,13 @@
 <div class="container-fluid p-0">
-    <h1 class="h3 mb-3">Edit Kelas</h1>
+    <h1 class="h3 mb-3">Edit Kelas Jurusan</h1>
     <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<%= admins_admin_authenticated_root_path %>">Dashboard</a></li>
             <li class="breadcrumb-item active" aria-current="page">Kategori</li>
             <li class="breadcrumb-item"><a href="<%= admins_admin_categories_class_rooms_path %>">Kelas</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><%= @class_room.id %></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @class_room.id %></a></li>
+            <li class="breadcrumb-item"><a href="<%= admins_admin_categories_class_room_class_room_majors_path %>">Kelas Jurusan</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @class_room_major.id %></a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit</li>
         </ol>
     </nav>
@@ -13,10 +15,10 @@
         <div class="col-lg-7">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Edit Kelas</h5>
+                    <h5 class="card-title">Edit Kelas Jurusan</h5>
                 </div>
                 <div class="card-body">
-                    <%= render 'form', class_room: @class_room, url: admins_admin_categories_class_room_path %>
+                    <%= render 'form', class_room_major: @class_room_major, url: admins_admin_categories_class_room_class_room_major_path(@class_room) %>
                 </div>
             </div>
         </div>

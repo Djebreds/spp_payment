@@ -33,8 +33,8 @@ unless ClassRoom.any?
   ])
 end
 
-unless ClassMajor.any?
-  ClassMajor.create!([
+unless ClassRoomMajor.any?
+  ClassRoomMajor.create!([
     { name: "XIII", class_room_id: 1, major_id: 1 },
     { name: "XIII", class_room_id: 1, major_id: 2 },
     { name: "XII", class_room_id: 2, major_id: 3 },
@@ -94,7 +94,7 @@ unless Student.any?
       nis: "123456789",
       phone: "6282121491054", 
       status: :active, 
-      class_major_id: 1, 
+      class_room_major_id: 1, 
       generation_id: 1,
       address: "Jl. Soreang Cipatik"
     }

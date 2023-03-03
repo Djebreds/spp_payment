@@ -6,3 +6,8 @@ import 'select2';
 import 'plugins/datatables';
 import 'plugins/sweetalert';
 import 'theme/theme';
+
+$('.form-select').select2({
+  placeholder: 'Silahkan pilih',
+  theme: 'bootstrap4',
+});

@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   has_many :payments, dependent: :delete_all
-  belongs_to :class_major
+  belongs_to :class_room_major
   belongs_to :generation
   
   validates :name, :address, presence: true
