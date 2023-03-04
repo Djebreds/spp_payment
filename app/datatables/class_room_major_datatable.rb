@@ -27,6 +27,6 @@ class ClassRoomMajorDatatable < AjaxDatatablesRails::ActiveRecord
   def get_raw_records
     ClassRoomMajor.joins(:major).select(
       :'class_room_majors.id', :'class_room_majors.name', :'majors.short', 
-      :'class_room_majors.created_at', :'class_room_majors.updated_at').where('class_room_majors.class_room_id = ?', self.params[:class_room_id])
+      :'class_room_majors.created_at', :'class_room_majors.updated_at', :'class_room_majors.class_room_id').where('class_room_majors.class_room_id = ?', self.params[:class_room_id])
   end
 end

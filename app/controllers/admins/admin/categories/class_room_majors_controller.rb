@@ -11,7 +11,7 @@ class Admins::Admin::Categories::ClassRoomMajorsController < ApplicationControll
   end
 
   def new
-    @majors = Major.select('id', 'name').all
+    @majors = Major.select('id', 'short').all
     @class_room_major = @class_room.class_room_majors.build
   end
 
@@ -27,8 +27,7 @@ class Admins::Admin::Categories::ClassRoomMajorsController < ApplicationControll
   end
   
   def edit
-    @majors = Major.select('id', 'name').all
-    
+    @majors = Major.select('id', 'short').all
   end
 
   def update

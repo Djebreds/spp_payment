@@ -61,8 +61,10 @@
     <h1 class="mb-3">Data Kelas Jurusan</h1>
     <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="<%= admins_admin_authenticated_root_path %>">Dashboard</a></li>
             <li class="breadcrumb-item active" aria-current="page">Kategori</li>
+            <li class="breadcrumb-item"><a href="<%= admins_admin_categories_class_rooms_path %>">Kelas</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @class_room.id %></a></li>
             <li class="breadcrumb-item active" aria-current="page">Kelas Jurusan</li>
         </ol>
     </nav>
