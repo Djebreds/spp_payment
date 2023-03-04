@@ -20,7 +20,7 @@ Rails.application.routes.draw do
           get 'budget_spps/index'
           namespace :categories do
             resources :majors, except: :show
-            get 'generations/index'
+            resources :generations, except: :show
             resources :class_rooms, except: :show do
               resources :class_room_majors, except: :show
             end

@@ -16,8 +16,6 @@
             <div class="mb-3">
                 <% invalid = class_room_major.errors.include?(:id_major) %>
                 <label for="id_major" class="my-1">Jurusan</label>
-                
-                <%# <%= f.select "test", options_from_collection_for_select(@majors, 'id', 'short'), class: "form-select #{'is-invalid' if invalid}", prompt: 'Silahkan Pilih' %>
                 <%= select_tag "id_major", options_from_collection_for_select(@majors, 'id', 'short', selected: f.object.major_id), class: "form-select #{'is-invalid' if invalid}", required: true %>
                 <% if invalid %>
                     <div class="invalid-feedback d-block">

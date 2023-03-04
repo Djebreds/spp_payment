@@ -1,0 +1,23 @@
+<%= form_for @generation, url: url do |f| %>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="mb-3">
+                <% invalid = @generation.errors.include?(:years) %>
+                <label for="years" class="my-1">Angkatan</label>
+                <%= f.text_field :years, class: "form-control #{'is-invalid' if invalid}", id: "years", placeholder: "Masukkan tahub", required: true 
+                <% if invalid %>
+                    <div class="invalid-feedback d-block">
+                        <% @generation.errors.full_messages_for(:years).each do |error_message| %>
+                            <%= error_message %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12 text-end">
+        <button type="reset" class="btn btn-danger fs-5">Reset</button>
+        <button type="submit" class="btn btn-primary fs-5">Submit</button>
+    </div>
+<% end %>

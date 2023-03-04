@@ -1,0 +1,24 @@
+<div class="container-fluid p-0">
+	<h1 class="h3 mb-3">Edit Jurusan</h1>
+	<nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="<%= admins_admin_authenticated_root_path %>">Dashboard</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Kategori</li>
+			<li class="breadcrumb-item"><a href="<%= admins_admin_categories_generations_path %>">Angkatan</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @generation.id %></li>
+			<li class="breadcrumb-item active" aria-current="page">Edit</li>
+		</ol>
+	</nav>
+	<div class="row justify-content-center">
+		<div class="col-lg-7">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">Edit Angkatan</h5>
+				</div>
+				<div class="card-body">
+					<%= render 'form', generation: @generation, url: admins_admin_categories_generation_path %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

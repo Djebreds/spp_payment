@@ -48,7 +48,6 @@ gem "sassc-rails"
 # Jquery for datatables
 gem 'jquery-datatables'
 
-
 # Authentication
 gem "devise"
 
@@ -63,7 +62,6 @@ gem 'active_link_to'
 
 # ActionView Helper
 gem 'draper'
-
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

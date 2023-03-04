@@ -20,7 +20,7 @@ class Admins::Admin::Categories::MajorsController < ApplicationController
       redirect_to admins_admin_categories_majors_path
     else
       flash[:alert] = "Jurusan gagal ditambahkan"
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
