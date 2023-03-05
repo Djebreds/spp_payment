@@ -16,12 +16,12 @@ class AdminDatatable < AjaxDatatablesRails::ActiveRecord
   def data
     records.map do |record|
       {
-        nip:      record.nip,
-        name:     record.name,
-        email:    record.email,
-        phone: record.phone,
-        status:   record.decorate.status,
-        DT_RowId: record.id,
+        nip:        record.nip,
+        name:       record.name,
+        email:      record.email,
+        phone:      record.phone,
+        status:     record.decorate.status,
+        DT_RowId:   record.id,
         DT_actions: record.decorate.DT_actions
       }
     end

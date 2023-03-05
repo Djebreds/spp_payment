@@ -1,0 +1,174 @@
+<%= form_for @student, url: url do |f| %>
+<div class="row justiyf-content-center">
+    <div class="col-md-4 col-xl-3">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Upload Photo</h5>
+            </div>
+            <div class="card-body text-center">
+                <% if @student.photo.attached? %>
+                    <%= image_tag student.photo, id: "photo_preview", class: "img-fluid rounded-circle mb-2", width: "128", height: "128" %>    
+                <% else %>
+                    <img id="photo_preview" class="img-fluid rounded-circle mb-2" src="<%= @student.photo %>" alt="Photo" style="width: 128px; height: 128px"/>    
+                <% end %>
+                <div>
+                    <% invalid = @student.errors.include?(:photo) %>
+                    <%= f.file_field :photo, class: "form-control", accept: "image/jpg, image/png, image/jpeg", id: "photo" %>
+                    <% if invalid %>
+                        <div class="invalid-feedback d-block">
+                            <% @student.errors.full_messages_for(:photo).each do |error_message| %>
+                                <%= error_message %>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-xl-9">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Profil Siswa</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <% invalid = @student.errors.include?(:nama) %>
+                            <label for="name" class="my-1">Nama</label>
+                            <%= f.text_field :name, class: "form-control #{'is-invalid' if invalid}", placeholder: "Masukkan Nama", required: true %>
+                            <% if invalid %>
+                                <div class="invalid-feedback d-block">
+                                    <% @student.errors.full_messages_for(:name).each do |error_message| %>
+                                        <%= error_message %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                        <div class="mb-3">
+                            <% invalid = @student.errors.include?(:nisn) %>
+                            <label for="nisn" class="my-1">NISN</label>
+                            <%= f.text_field :nisn, class: "form-control #{'is-invalid' if invalid}", placeholder: "Masukkan NISN", required: true %>
+                            <% if invalid %>
+                                <div class="invalid-feedback d-block">
+                                    <% @student.errors.full_messages_for(:nisn).each do |error_message| %>
+                                        <%= error_message %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                        <div class="mb-3">
+                            <% invalid = @student.errors.include?(:nis) %>
+                            <label for="nis" class="my-1">NIS</label>
+                            <%= f.text_field :nis, class: "form-control #{'is-invalid' if invalid}", placeholder: "Masukkan NIS", required: true %>
+                            <% if invalid %>
+                                <div class="invalid-feedback d-block">
+                                    <% @student.errors.full_messages_for(:nis).each do |error_message| %>
+                                        <%= error_message %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                        <div class="mb-3">
+                            <% invalid = @student.errors.include?(:phone) %>
+                            <label for="phone" class="my-1">Nomor HP</label>
+                            <%= f.text_field :phone, class: "form-control #{'is-invalid' if invalid}", placeholder: "Masukkan Nomor HP", required: true %>
+                            <% if invalid %>
+                                <div class="invalid-feedback d-block">
+                                    <% @student.errors.full_messages_for(:phone).each do |error_message| %>
+                                        <%= error_message %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                         <div class="mb-3">
+                            <% invalid = @student.errors.include?(:address) %>
+                            <label for="address" class="my-1">Alamat</label>
+                            <%= f.text_area :address, class: "form-control #{'is-invalid' if invalid}", placeholder: "Masukkan Alamat", required: true, size: "10x5" %>
+                            <% if invalid %>
+                                <div class="invalid-feedback d-block">
+                                    <% @student.errors.full_messages_for(:address).each do |error_message| %>
+                                        <%= error_message %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <% invalid = @student.errors.include?(:generation_id) %>
+                            <label for="generation_id" class="my-1">Angkatan</label>
+                            <%= select_tag "student[generation_id]", options_from_collection_for_select(Generation.all, 'id', 'years', selected: f.object.generation_id), class: "form-select #{'is-invalid' if invalid}", required: true %>
+                            <% if invalid %>
+                                <div class="invalid-feedback d-block">
+                                    <% student.errors.full_messages_for(:generation_id).each do |error_message| %>
+                                        <%= error_message %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                        <div class="mb-3">
+                            <% invalid = @student.errors.include?(:class_room_major_id) %>
+                            <label for="class_room_major" class="my-1">Kelas</label>
+                            <%= select_tag "student[class_room_major_id]", options_from_collection_for_select(ClassRoomMajor.includes(:major), :id, :class_major, selected: f.object.class_room_major_id ), class: "form-select #{'is-invalid' if invalid}", required: true %>
+                            
+                            <% if invalid %>
+                                <div class="invalid-feedback d-block">
+                                    <% student.errors.full_messages_for(:class_room_major_id).each do |error_message| %>
+                                        <%= error_message %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                        <div class="mb-3">
+                            <% invalid = @student.errors.include?(:email) %>
+                            <label for="email" class="my-1">Email</label>
+                            <%= f.email_field :email, class: "form-control #{'is-invalid' if invalid}", placeholder: "Masukkan Email", required: true %>
+                            <% if invalid %>
+                                <div class="invalid-feedback d-block">
+                                    <% @student.errors.full_messages_for(:email).each do |error_message| %>
+                                        <%= error_message %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                        <div class="mb-3">
+                            <% invalid = @student.errors.include?(:status) %>
+                            <label for="status" class="my-1">Status</label>
+                            <select name="student[status]" id="status" class="form-select <%= 'is-invalid' if invalid %>" required>
+                                <option value="active" <%= 'selected' if f.object.status == 'active' %>>Active</option>
+                                <option value="inactive" <%= 'selected' if f.object.status == 'inactive' %>>Inactive</option>
+                            </select>
+                            <% if invalid %>
+                                <div class="invalid-feedback d-block">
+                                    <% student.errors.full_messages_for(:status).each do |error_message| %>
+                                        <%= error_message %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <hr>
+                <div class="col-12 text-end">
+                    <button type="reset" class="btn btn-danger fs-5">Reset</button>
+                    <button type="submit" class="btn btn-primary fs-5">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+
+
+<script>
+    photo.onchange = evt => {
+    const [file] = photo.files
+        if (file) {
+        photo_preview.src = URL.createObjectURL(file)
+        }
+    }
+</script>

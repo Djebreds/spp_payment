@@ -23,8 +23,8 @@
 					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_users_admins_path) %>">
 						<a href="<%= admins_admin_users_admins_path %>" class="sidebar-link">Admin</a>
 					</li>
-					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_users_students_index_path) %>">
-						<a href="<%= admins_admin_users_students_index_path %>" class="sidebar-link">Siswa</a>
+					<li class="sidebar-item <%= current_page?(admins_admin_users_students_path) || parent_nav_is_active?('/admins/admin/users/students/') ? 'active' : '' %>">
+						<a href="<%= admins_admin_users_students_path %>" class="sidebar-link">Siswa</a>
 					</li>
 					<li class="sidebar-item <%= 'active' if current_page?(admins_admin_users_staffs_index_path) %>">
 						<a href="<%= admins_admin_users_staffs_index_path %>" class="sidebar-link">Staff</a>

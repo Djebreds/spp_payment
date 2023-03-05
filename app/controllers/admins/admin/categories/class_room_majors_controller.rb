@@ -11,7 +11,7 @@ class Admins::Admin::Categories::ClassRoomMajorsController < ApplicationControll
   end
 
   def new
-    @majors = Major.select('id', 'short').all
+    # @majors = Major.select('id', 'short').all
     @class_room_major = @class_room.class_room_majors.build
   end
 
@@ -19,10 +19,10 @@ class Admins::Admin::Categories::ClassRoomMajorsController < ApplicationControll
     @class_room_major = @class_room.class_room_majors.build(class_room_major_params)
     if @class_room_major.save
       flash[:notice] = "Kelas jurusan berhasil ditambahkan"
-      redirect_to admins_admin_categories_class_room_class_room_majors(@class_room)
+      redirect_to admins_admin_categories_class_room_class_room_majors_path(@class_room)
     else
       flash[:alert] = "Kelas jurusan gagal ditambahkan"
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
   
@@ -33,20 +33,20 @@ class Admins::Admin::Categories::ClassRoomMajorsController < ApplicationControll
   def update
     if @class_room_major.update(class_room_major_params)
       flash[:notice] = "Kelas jurusan berhasil diubah"
-      redirect_to admins_admin_categories_class_room_class_room_majors(@class_room)
+      redirect_to admins_admin_categories_class_room_class_room_majors_path(@class_room)
     else
       flash[:alert] = "Kelas jurusan gagal diubah"
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
   def destroy
     if @class_room_major.destroy
       flash[:notice] = "Kelas jurusan berhasil dihapus"
-      redirect_to admins_admin_categories_class_room_class_room_majors(@class_room)
+      redirect_to admins_admin_categories_class_room_class_room_majors_path(@class_room)
     else
       flash[:alert] = "Kelas jurusan gagal dihapus"
-      redirect_to admins_admin_categories_class_room_class_room_majors(@class_room)
+      redirect_to admins_admin_categories_class_room_class_room_majors_path(@class_room)
     end
   end
 
@@ -61,6 +61,6 @@ class Admins::Admin::Categories::ClassRoomMajorsController < ApplicationControll
   end
 
   def class_room_major_params
-    params.require(:class_room_major).permit(:name, :id_major)
+    params.require(:class_room_major).permit(:name, :major_id)
   end
 end

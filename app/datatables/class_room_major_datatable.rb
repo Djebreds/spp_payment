@@ -2,8 +2,8 @@ class ClassRoomMajorDatatable < AjaxDatatablesRails::ActiveRecord
 
   def view_columns
     @view_columns ||= {
-      name:       { source: "ClassRoom.name", cond: :like, searchable: true, orderable: true },
-      short:      { source: "ClassRoomMajor.short", cond: :like, searchable: true, orderable: true },
+      name:       { source: "ClassRoomMajor.name", cond: :like, searchable: true, orderable: true },
+      short:      { source: "Major.short", cond: :like, searchable: true, orderable: true },
       created_at: { source: "ClassRoomMajor.created_at", cond: :like, searchable: true, orderable: true },
       updated_at: { source: "ClassRoomMajor.updated_at", cond: :like, searchable: true, orderable: true },
       DT_RowId: { cond: :null_value, searchable: false, orderable: false },

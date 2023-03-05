@@ -14,12 +14,12 @@
                 <% end %>
             </div>
             <div class="mb-3">
-                <% invalid = class_room_major.errors.include?(:id_major) %>
-                <label for="id_major" class="my-1">Jurusan</label>
-                <%= select_tag "id_major", options_from_collection_for_select(@majors, 'id', 'short', selected: f.object.major_id), class: "form-select #{'is-invalid' if invalid}", required: true %>
+                <% invalid = class_room_major.errors.include?(:major_id) %>
+                <label for="major_id" class="my-1">Jurusan</label>
+                <%= select_tag "class_room_major[major_id]", options_from_collection_for_select(Major.all, 'id', 'short', selected: f.object.major_id), class: "form-select #{'is-invalid' if invalid}", required: true %>
                 <% if invalid %>
                     <div class="invalid-feedback d-block">
-                        <% class_room_major.errors.full_messages_for(:id_major).each do |error_message| %>
+                        <% class_room_major.errors.full_messages_for(:major_id).each do |error_message| %>
                             <%= error_message %>
                         <% end %>
                     </div>

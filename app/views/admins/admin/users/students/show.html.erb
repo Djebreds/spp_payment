@@ -1,0 +1,85 @@
+<div class="container-fluid p-0">
+	<h1 class="h3 mb-3">Detail Siswa</h1>
+	<nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="<%= admins_admin_authenticated_root_path %>">Dashboard</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Users</li>
+			<li class="breadcrumb-item"><a href="<%= admins_admin_users_students_path %>">Siswa</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @student.id %></li>
+			<li class="breadcrumb-item active" aria-current="page">Detail</li>
+		</ol>
+	</nav>
+    <div class="row justiyf-content-center">
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Photo</h5>
+                </div>
+                <div class="card-body text-center">
+                    <img src="<%= @student.photo %>" class="img-fluid rounded-circle mb-2" width="210" height="210">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-xl-9">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Profil Siswa</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <dl class="row fs-4">
+                                    <dt class="col-sm-3">Nama</dt>
+                                    <dd class="col-sm-9"><%= @student.name %></dd>
+
+                                    <dt class="col-sm-3">NISN</dt>
+                                    <dd class="col-sm-9"><%= @student.nisn %></dd>
+
+                                    <dt class="col-sm-3">NIS</dt>
+                                    <dd class="col-sm-9"><%= @student.nis %></dd>
+
+                                    <dt class="col-sm-3">Kelas</dt>
+                                    <dd class="col-sm-9"><%= "#{@student.class_room_major.name}-#{@student.class_room_major.major.short}" %></dd>
+
+                                    <dt class="col-sm-3">No. Telepon</dt>
+                                    <dd class="col-sm-9"><%= @student.phone %></dd>
+
+                                    <dt class="col-sm-3">Alamat</dt>
+                                    <dd class="col-sm-9"><%= @student.address %></dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <dl class="row fs-4">
+                                    <dt class="col-sm-3">Angkatan</dt>
+                                    <dd class="col-sm-9"><%= @student.generation.years %></dd>
+
+                                    <dt class="col-sm-3">Email</dt>
+                                    <dd class="col-sm-9"><%= @student.email %></dd>
+
+                                    <dt class="col-sm-3">Tanggal dibuat</dt>
+                                    <dd class="col-sm-9"><%= @student.created_at.strftime("%A, %e %B %Y %H:%M:%S %p") %></dd>
+
+                                    <dt class="col-sm-3">Tanggal diubah</dt>
+                                    <dd class="col-sm-9"><%= @student.updated_at.strftime("%A, %e %B %Y %H:%M:%S %p") %></dd>
+
+                                    <dt class="col-sm-3">Status</dt>
+                                    <% case @student.status %>
+                                        <% when 'active' %>
+                                            <dd class="col-sm-9"><span class="badge rounded-pill bg-success"><%= @student.status %></span></dd>
+                                        <% when 'inactive' %>
+                                            <dd class="col-sm-9"><span class="badge rounded-pill bg-danger"><%= @student.status %></span></dd>
+                                    <% end %>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+

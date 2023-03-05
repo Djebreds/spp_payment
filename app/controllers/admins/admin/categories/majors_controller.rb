@@ -45,7 +45,6 @@ class Admins::Admin::Categories::MajorsController < ApplicationController
       flash[:alert] = 'Jurusan gagal dihapus'
       redirect_to admins_admin_categories_majors_path
     end
-    
   end
 
   private

@@ -4,4 +4,8 @@ class ClassRoomMajor < ApplicationRecord
   has_many :students, dependent: :destroy
 
   validates :name, presence: true
+
+  def class_major
+    "#{name}-#{major.short}"
+  end
 end

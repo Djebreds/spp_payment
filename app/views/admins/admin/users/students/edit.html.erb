@@ -1,0 +1,13 @@
+<div class="container-fluid p-0">
+	<h1 class="h3 mb-3">Edit Siswa</h1>
+	<nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="<%= admins_admin_authenticated_root_path %>">Dashboard</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Users</li>
+			<li class="breadcrumb-item"><a href="<%= admins_admin_users_students_path %>">Siswa</a></li>
+			<li class="breadcrumb-item active" aria-current="page"><%= @student.id %></li>
+			<li class="breadcrumb-item active" aria-current="page">Edit</li>
+		</ol>
+	</nav>
+    <%= render 'form', student: @student, url: admins_admin_users_student_path %>
+</div>
