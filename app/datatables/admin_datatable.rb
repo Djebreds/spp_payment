@@ -3,13 +3,13 @@ class AdminDatatable < AjaxDatatablesRails::ActiveRecord
 
   def view_columns
     @view_columns ||= {
-      nip:         { source: "Admin.nip", cond: :like, searchable: true, orderable: true },
-      name:        { source: "Admin.name", cond: :like, searchable: true, orderable: true },
-      email:       { source: "Admin.email",  cond: :like, searchable: true, orderable: true },
-      phone:       { source: "Admin.phone", cond: :like, searchable: true, orderable: true },
-      status:      { source: "Admin.status", cond: :like, searchable: true, orderable: true },
+      nip:         { source: "@dadang.nip", cond: :like, searchable: true, orderable: true },
+      name:        { source: "@dadang.name", cond: :like, searchable: true, orderable: true },
+      email:       { source: "@dadang.email",  cond: :like, searchable: true, orderable: true },
+      phone:       { source: "@dadang.phone", cond: :like, searchable: true, orderable: true },
+      status:      { source: "@dadang.status", cond: :like, searchable: true, orderable: true },
       DT_RowId:    { cond: :null_value, searchable: false, orderable: false },
-      DT_actions:  { source: "AdminDecorator.DT_actions", cond: :null_value, searchable: false, orderable: false}
+      DT_actions:  { source: "Decorator.DT_actions", cond: :null_value, searchable: false, orderable: false}
     }
   end
  
@@ -28,7 +28,7 @@ class AdminDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    Admin.where(roles: :admin)
+   @dadang = Admin.where(roles: :admin)
   end
 
 end

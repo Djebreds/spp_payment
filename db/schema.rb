@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_112411) do
     t.datetime "updated_at", null: false
     t.integer "roles", limit: 1
     t.string "name", limit: 50, null: false
-    t.string "photo"
     t.string "nip", limit: 10, null: false
     t.text "address"
     t.string "phone", limit: 13
