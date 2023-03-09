@@ -123,14 +123,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_112411) do
     t.text "description"
     t.integer "status", default: 0, null: false
     t.bigint "student_id", null: false
-    t.bigint "payment_methods_id", null: false
-    t.bigint "budget_spps_id", null: false
+    t.bigint "payment_method_id", null: false
+    t.bigint "budget_spp_id", null: false
     t.bigint "admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_payments_on_admin_id"
-    t.index ["budget_spps_id"], name: "index_payments_on_budget_spps_id"
-    t.index ["payment_methods_id"], name: "index_payments_on_payment_methods_id"
+    t.index ["budget_spp_id"], name: "index_payments_on_budget_spp_id"
+    t.index ["payment_method_id"], name: "index_payments_on_payment_method_id"
     t.index ["student_id"], name: "index_payments_on_student_id"
   end
 
@@ -164,8 +164,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_112411) do
   add_foreign_key "class_room_majors", "majors"
   add_foreign_key "monthly_spps", "budget_spps"
   add_foreign_key "payments", "admins"
-  add_foreign_key "payments", "budget_spps", column: "budget_spps_id"
-  add_foreign_key "payments", "payment_methods", column: "payment_methods_id"
+  add_foreign_key "payments", "budget_spps"
+  add_foreign_key "payments", "payment_methods"
   add_foreign_key "payments", "students"
   add_foreign_key "students", "class_room_majors"
   add_foreign_key "students", "generations"

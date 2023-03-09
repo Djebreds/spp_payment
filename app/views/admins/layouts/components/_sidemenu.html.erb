@@ -50,14 +50,14 @@
 					</li>
 				</ul>
 			</li>
-			<li class="sidebar-item <%= 'active' if current_page?(admins_admin_budget_spps_index_path) %>">
-				<a class="sidebar-link" href="<%= admins_admin_budget_spps_index_path %>">
+			<li class="sidebar-item <%= current_page?(admins_admin_budget_spps_path) || parent_nav_is_active?('/admins/admin/budget_spps/') ? 'active' : '' %>">
+				<a class="sidebar-link" href="<%= admins_admin_budget_spps_path %>">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle me-2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
 					<span class="align-middle">Budget SPP</span>
 				</a>
 			</li>
-			<li class="sidebar-item <%= 'active' if current_page?(admins_admin_payment_methods_index_path) %>">
-				<a class="sidebar-link" href="<%= admins_admin_payment_methods_index_path %>">
+			<li class="sidebar-item <%= current_page?(admins_admin_payment_methods_path) || parent_nav_is_active?('/admins/admin/payment_methods/') ? 'active' : '' %>">
+				<a class="sidebar-link" href="<%= admins_admin_payment_methods_path %>">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card align-middle me-2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
 					<span class="align-middle">Metode Pembayaran</span>
 				</a>

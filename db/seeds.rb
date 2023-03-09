@@ -132,8 +132,8 @@ unless Payment.any?
         total: 200000, 
         status: :initial, 
         student_id: 1, 
-        payment_methods_id: 1,
-        budget_spps_id: 1, 
+        payment_method_id: 1,
+        budget_spp_id: 1, 
         admin_id: 1, 
         description: "Bayar SPP"
       }

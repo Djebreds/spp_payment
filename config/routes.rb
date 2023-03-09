@@ -16,8 +16,8 @@ Rails.application.routes.draw do
         namespace :admin do
           get 'dashboard/index', as: :authenticated_root
           get 'payments/index'
-          get 'payment_methods/index'
-          get 'budget_spps/index'
+          resources :budget_spps, excepts: :show
+          resources :payment_methods, except: :show
           namespace :categories do
             resources :majors, except: :show
             resources :generations, except: :show

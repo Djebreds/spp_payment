@@ -28,5 +28,4 @@ class MajorDatatable < AjaxDatatablesRails::ActiveRecord
   def get_raw_records
     Major.all
   end
-
 end

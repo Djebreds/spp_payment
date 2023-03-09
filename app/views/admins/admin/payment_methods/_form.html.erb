@@ -1,0 +1,35 @@
+<%= form_for @payment_method, url: url do |f| %>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="mb-3">
+                <% invalid = @payment_method.errors.include?(:name) %>
+                <label for="name" class="my-1">Nama metode pembayaran</label>
+                <%= f.text_field :name, class: "form-control #{'is-invalid' if invalid}", id: "name", placeholder: "Masukkan nama metode pembayaran", required: true %>
+                <% if invalid %>
+                    <div class="invalid-feedback d-block">
+                        <% @payment_method.errors.full_messages_for(:name).each do |error_message| %>
+                            <%= error_message %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="mb-3">
+                <% invalid = @payment_method.errors.include?(:reference) %>
+                <label for="reference" class="my-1">Reference</label>
+                <%= f.text_field :reference, class: "form-control #{'is-invalid' if invalid}", id: "reference", placeholder: "Masukkan reference" %>
+                <% if invalid %>
+                    <div class="invalid-feedback d-block">
+                        <% @payment_method.errors.full_messages_for(:reference).each do |error_message| %>
+                            <%= error_message %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12 text-end">
+        <button type="reset" class="btn btn-danger fs-5">Reset</button>
+        <button type="submit" class="btn btn-primary fs-5">Submit</button>
+    </div>
+<% end %>

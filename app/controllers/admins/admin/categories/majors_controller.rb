@@ -56,5 +56,4 @@ class Admins::Admin::Categories::MajorsController < ApplicationController
   def major_params
     params.require(:major).permit(:name, :short)
   end
-
 end
