@@ -1,6 +1,6 @@
 <% content_for :head do %>
-    <%= javascript_import_module_tag "pages/categories/generationsDataTable" %>
-    <%= javascript_import_module_tag "pages/categories/generationsSweetalert" %>
+    <%= javascript_import_module_tag "pages/generations/generationsDataTable" %>
+    <%= javascript_import_module_tag "pages/generations/generationsSweetalert" %>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <% end %>
 
@@ -81,7 +81,7 @@
                     <div id="content" class="d-none">
                         <div id="action" class="row justify-content-between align-items-center">
                             <div class="col-md-9 text-center text-md-start button-action align-items-center ">
-                                <a href="<%= new_admins_admin_categories_generation_path %>" class="btn btn-success">
+                                <a href="<%= new_admins_admin_generation_path %>" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmarks-fill" viewBox="0 0 16 16">
                                 <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z"/>
                                 <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z"/>
@@ -101,7 +101,7 @@
                             <div class="row ">
                                 <div class="col-sm-12">
                                     <table id="datatables-column-search-text-inputs" class="table table-striped dataTable" style="width: 100%;"
-                                        aria-describedby="datatables-column-search-text-inputs_info" data-source="<%= admins_admin_categories_generations_path(format: :json) %>">
+                                        aria-describedby="datatables-column-search-text-inputs_info" data-source="<%= admins_admin_generations_path(format: :json) %>">
                                         <div class="loading col-12 mt-2" style="height: 20px">
                                         </div>
                                         <thead>

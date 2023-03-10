@@ -4,7 +4,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="<%= admins_admin_authenticated_root_path %>">Dashboard</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Kategori</li>
-			<li class="breadcrumb-item"><a href="<%= admins_admin_categories_generations_path %>">Angkatan</a></li>
+			<li class="breadcrumb-item"><a href="<%= admins_admin_generations_path %>">Angkatan</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Tambah</li>
 		</ol>
 	</nav>
@@ -15,7 +15,7 @@
 					<h5 class="card-title">Tambah Angkatan</h5>
 				</div>
 				<div class="card-body">
-					<%= render 'form', generation: @generation, url: admins_admin_categories_generations_path %>
+					<%= render 'form', generation: @generation, url: admins_admin_generations_path %>
 				</div>
 			</div>
 		</div>

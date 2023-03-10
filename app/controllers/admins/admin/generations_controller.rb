@@ -1,4 +1,4 @@
-class Admins::Admin::Categories::GenerationsController < ApplicationController
+class Admins::Admin::GenerationsController < ApplicationController
   before_action :set_generation, only: [:edit, :update, :destroy]
   layout "admins/layouts/app"
   def index
@@ -17,7 +17,7 @@ class Admins::Admin::Categories::GenerationsController < ApplicationController
     
     if @generation.save
       flash[:notice] = "Generasi baru berhasil ditambahkan"
-      redirect_to admins_admin_categories_generations_path
+      redirect_to admins_admin_generations_path
     else
       flash[:alert] = "Generasi gagal ditambahkan"
       render :new
@@ -30,7 +30,7 @@ class Admins::Admin::Categories::GenerationsController < ApplicationController
   def update
     if @generation.update(generation_params)
       flash[:notice] = "Generasi berhasil diubah"
-      redirect_to admins_admin_categories_generations_path
+      redirect_to admins_admin_generations_path
     else
       flash[:alert] = "Generasi gagal diubah"
       render :edit
@@ -40,10 +40,10 @@ class Admins::Admin::Categories::GenerationsController < ApplicationController
   def destroy
     if @generation.destroy!
       flash[:notice] = "Generasi berhasil dihapus"
-      redirect_to admins_admin_categories_generations_path
+      redirect_to admins_admin_generations_path
     else
       flash[:alert] = "Generasi gagal dihapus"
-      redirect_to admins_admin_categories_generations_path
+      redirect_to admins_admin_generations_path
     end
   end
 

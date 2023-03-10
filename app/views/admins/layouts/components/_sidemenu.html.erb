@@ -39,9 +39,6 @@
 				</a>
 				<ul id="categories" class="sidebar-dropdown list-unstyled collapse <%= 'show' if parent_nav_is_active?('/admins/admin/categories/') %> "
 					data-bs-parent="#sidebar">
-					<li class="sidebar-item <%= current_page?(admins_admin_categories_generations_path) || parent_nav_is_active?('/admins/admin/categories/generations/') ? 'active' : '' %>">
-						<a href="<%= admins_admin_categories_generations_path %>" class="sidebar-link">Angkatan</a>
-					</li>
 					<li class="sidebar-item <%= current_page?(admins_admin_categories_majors_path) || parent_nav_is_active?('/admins/admin/categories/majors/') ? 'active' : '' %>">
 						<a href="<%= admins_admin_categories_majors_path %>" class="sidebar-link">Jurusan</a>
 					</li>
@@ -49,6 +46,14 @@
 						<a href="<%= admins_admin_categories_class_rooms_path %>" class="sidebar-link">Kelas</a>
 					</li>
 				</ul>
+			</li>
+			<li class="sidebar-item <%= current_page?(admins_admin_generations_path) || parent_nav_is_active?('/admins/admin/categories/generations/') ? 'active' : '' %>">
+				<a href="<%= admins_admin_generations_path %>" class="sidebar-link">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-range-fill" viewBox="0 0 16 16">
+					<path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 7V5H0v5h5a1 1 0 1 1 0 2H0v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9h-6a1 1 0 1 1 0-2h6z"/>
+					</svg>
+					<span class="align-middle">Angkatan</span>
+				</a>
 			</li>
 			<li class="sidebar-item <%= current_page?(admins_admin_budget_spps_path) || parent_nav_is_active?('/admins/admin/budget_spps/') ? 'active' : '' %>">
 				<a class="sidebar-link" href="<%= admins_admin_budget_spps_path %>">
