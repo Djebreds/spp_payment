@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_05_112411) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_10_124337) do
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -102,7 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_112411) do
 
   create_table "monthly_spps", charset: "utf8mb4", force: :cascade do |t|
     t.string "month", null: false
-    t.decimal "amount", precision: 10, null: false
+    t.decimal "amount", precision: 10, default: "0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "budget_spp_id", null: false
@@ -169,4 +169,39 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_112411) do
   add_foreign_key "payments", "students"
   add_foreign_key "students", "class_room_majors"
   add_foreign_key "students", "generations"
+  create_trigger("budget_spps_after_insert_row_tr", :generated => true, :compatibility => 1).
+      on("budget_spps").
+      after(:insert) do
+    <<-SQL_ACTIONS
+
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('Janurary', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('February', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('March', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('April', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('May', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('June', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('July', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('August', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('September', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('October', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('November', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+        INSERT INTO monthly_spps (month, budget_spp_id, created_at, updated_at) VALUES ('December', NEW.id, CURRENT_TIME(), CURRENT_TIME());
+    SQL_ACTIONS
+  end
+
+  create_trigger("generations_after_insert_row_tr", :generated => true, :compatibility => 1).
+      on("generations").
+      after(:insert) do
+    <<-SQL_ACTIONS
+
+        SET @year1 = CAST(SUBSTRING_INDEX(NEW.years, '/', 1) AS UNSIGNED);
+        SET @year2 = CAST(SUBSTRING_INDEX(NEW.years, '/', -1) AS UNSIGNED);
+
+        WHILE @year1 <= @year2 DO
+          INSERT INTO budget_spps (year, generation_id, created_at, updated_at) VALUES (CAST(@year1 AS NCHAR), NEW.id, CURRENT_TIME(), CURRENT_TIME());
+          SET @year1 = @year1 + 1;
+        END WHILE;
+    SQL_ACTIONS
+  end
+
 end

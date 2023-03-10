@@ -46,36 +46,36 @@ unless ClassRoomMajor.any?
   ])
 end
 
-unless BudgetSpp.any?
-  BudgetSpp.create!([
-    { year: '2018', generation_id: 1},
-    { year: '2019', generation_id: 1},
-    { year: '2020', generation_id: 1},
-    { year: '2019', generation_id: 2},
-    { year: '2020', generation_id: 2},
-    { year: '2021', generation_id: 2},
-    { year: '2020', generation_id: 3},
-    { year: '2021', generation_id: 3},
-    { year: '2022', generation_id: 3}
-    ])
-  end
+# unless BudgetSpp.any?
+#   BudgetSpp.create!([
+#     { year: '2018', generation_id: 1},
+#     { year: '2019', generation_id: 1},
+#     { year: '2020', generation_id: 1},
+#     { year: '2019', generation_id: 2},
+#     { year: '2020', generation_id: 2},
+#     { year: '2021', generation_id: 2},
+#     { year: '2020', generation_id: 3},
+#     { year: '2021', generation_id: 3},
+#     { year: '2022', generation_id: 3}
+#     ])
+#   end
   
-unless MonthlySpp.any?
-  MonthlySpp.create!([
-    { month: 'Januari', amount: 200000, budget_spp_id: 1 },
-    { month: 'Februari', amount: 200000, budget_spp_id: 1 },
-    { month: 'Maret', amount: 200000, budget_spp_id: 1 },
-    { month: 'April', amount: 200000, budget_spp_id: 1 },
-    { month: 'Mei', amount: 200000, budget_spp_id: 1 },
-    { month: 'Juni', amount: 200000, budget_spp_id: 1 },
-    { month: 'Juli', amount: 200000, budget_spp_id: 1 },
-    { month: 'Agustus', amount: 200000, budget_spp_id: 1 },
-    { month: 'September', amount: 200000, budget_spp_id: 1 },
-    { month: 'Oktober', amount: 200000, budget_spp_id: 1 },
-    { month: 'November', amount: 200000, budget_spp_id: 1 },
-    { month: 'Desember', amount: 200000, budget_spp_id: 1 },
-  ])
-end
+# unless MonthlySpp.any?
+#   MonthlySpp.create!([
+#     { month: 'Januari', amount: 200000, budget_spp_id: 1 },
+#     { month: 'Februari', amount: 200000, budget_spp_id: 1 },
+#     { month: 'Maret', amount: 200000, budget_spp_id: 1 },
+#     { month: 'April', amount: 200000, budget_spp_id: 1 },
+#     { month: 'Mei', amount: 200000, budget_spp_id: 1 },
+#     { month: 'Juni', amount: 200000, budget_spp_id: 1 },
+#     { month: 'Juli', amount: 200000, budget_spp_id: 1 },
+#     { month: 'Agustus', amount: 200000, budget_spp_id: 1 },
+#     { month: 'September', amount: 200000, budget_spp_id: 1 },
+#     { month: 'Oktober', amount: 200000, budget_spp_id: 1 },
+#     { month: 'November', amount: 200000, budget_spp_id: 1 },
+#     { month: 'Desember', amount: 200000, budget_spp_id: 1 },
+#   ])
+# end
 
 unless PaymentMethod.any?
   PaymentMethod.create!([

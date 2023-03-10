@@ -17,6 +17,7 @@ default: &default
   password: root
   host: localhost
   socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  strict: false
 
 development:
   <<: *default
