@@ -4,7 +4,6 @@
             <div class="mb-3">
                 <% invalid = @generation.errors.include?(:years) %>
                 <label for="years" class="my-1">Angkatan</label>
-                <%# <input type="text" class="form-control" data-mask="0000/0000" autocomplete="off" maxlength="10"> %>
                 <%= f.text_field :years, class: "form-control #{'is-invalid' if invalid}", id: "years", "data-mask": "0000/0000", maxlength:"9", placeholder: "Masukkan tahun", required: true %>
                 <span class="font-13 text-muted">contoh: 2022/2023</span>
                 <% if invalid %>

@@ -8,11 +8,10 @@ var table = $('#datatables-column-search-text-inputs').DataTable({
       },
     },
     {
-      data: 'year',
+      data: 'month',
     },
     {
-      data: 'total',
-      searchable: true,
+      data: 'amount',
     },
     {
       data: 'created_at',
@@ -28,10 +27,10 @@ var table = $('#datatables-column-search-text-inputs').DataTable({
   order: [],
   language: {
     processing: `
-                  <div class="progress-bar">
-                      <div class="progress-bar-value"></div>
-                  </div>
-                  `,
+                    <div class="progress-bar">
+                        <div class="progress-bar-value"></div>
+                    </div>
+                    `,
   },
   responsive: true,
   scrollX: true,

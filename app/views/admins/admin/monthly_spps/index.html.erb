@@ -1,7 +1,5 @@
 <% content_for :head do %>
-    <%= javascript_import_module_tag "pages/generations/generationsDataTable" %>
-    <%= javascript_import_module_tag "pages/generations/generationsSweetalert" %>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <%= javascript_import_module_tag "pages/generations/monthlySppDataTable" %>
 <% end %>
 
 <style>
@@ -59,11 +57,15 @@
     }
 </style>
 <div class="container-fluid p-0">
-    <h1 class="mb-3">Data Angkatan</h1>
+    <h1 class="mb-3">Data Spp Per Tahun</h1>
     <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Angkatan</li>
+            <li class="breadcrumb-item"><a href="<%= admins_admin_authenticated_root_path %>">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="<%= admins_admin_generations_path %>">Angkatan</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @generation.id %></a></li>
+            <li class="breadcrumb-item"><a href="<%= admins_admin_generation_budget_spps_path(@generation.id) %>">Spp Per Tahun</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @budget_spp.id %></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Spp Per Bulan</li>
         </ol>
     </nav>
     <div class="row position-relative">
@@ -80,12 +82,6 @@
                     <div id="content" class="d-none">
                         <div id="action" class="row justify-content-between align-items-center">
                             <div class="col-md-9 text-center text-md-start button-action align-items-center ">
-                                <a href="<%= new_admins_admin_generation_path %>" class="btn btn-success">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmarks-fill" viewBox="0 0 16 16">
-                                <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z"/>
-                                <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z"/>
-                                </svg>
-                                 Tambah Angkatan </a>
                             </div>
                             <div class="col-md-3 search-action">
                                 <div class="d-flex gap-3 my-2">
@@ -100,7 +96,7 @@
                             <div class="row ">
                                 <div class="col-sm-12">
                                     <table id="datatables-column-search-text-inputs" class="table table-striped dataTable" style="width: 100%;"
-                                        aria-describedby="datatables-column-search-text-inputs_info" data-source="<%= admins_admin_generations_path(format: :json) %>">
+                                        aria-describedby="datatables-column-search-text-inputs_info" data-source="<%= admins_admin_generation_budget_spp_monthly_spps_path(format: :json) %>">
                                         <div class="loading col-12 mt-2" style="height: 20px">
                                         </div>
                                         <thead>
@@ -109,8 +105,11 @@
                                                     rowspan="1" colspan="1" aria-sort="ascending" aria-label="NO: activate to sort column descending"
                                                     >NO</th>
                                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
-                                                    rowspan="1" colspan="1" aria-sort="ascending" aria-label="Angkatan: activate to sort column descending"
-                                                    >Angkatan</th>
+                                                    rowspan="1" colspan="1" aria-sort="ascending" aria-label="Bulan: activate to sort column descending"
+                                                    >Bulan</th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="datatables-column-search-text-inputs"
+                                                    rowspan="1" colspan="1" aria-sort="ascending" aria-label="Jumlah: activate to sort column descending"
+                                                    >Jumlah</th>
                                                 <th class="no-short" tabindex="0" aria-controls="datatables-column-search-text-inputs" rowspan="1"
                                                     colspan="1" aria-label="Tanggal Dibuat: activate to sort column ascending">
                                                     Tanggal Dibuat
@@ -132,7 +131,10 @@
                                                     <input type="text" class="form-control d-none" placeholder="Search NO">
                                                 <th>
                                                 <th rowspan="1" colspan="1">
-                                                    <input type="text" class="form-control" placeholder="Search Angkatan">
+                                                    <input type="text" class="form-control" placeholder="Search Bulan">
+                                                </th>
+                                                <th rowspan="1" colspan="1">
+                                                    <input type="text" class="form-control" placeholder="Search Jumlah">
                                                 </th>
                                                 <th rowspan="1" colspan="1">
                                                     <input type="text" class="form-control" placeholder="Search Tanggal Dibuat">
@@ -168,8 +170,6 @@
 
         }
     };
-
-    
 </script>
 
 

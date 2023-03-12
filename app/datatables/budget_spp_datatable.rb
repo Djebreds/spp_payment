@@ -25,18 +25,13 @@ class BudgetSppDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    # BudgetSpp.joins(:generation).where('budget_spps.generation_id = ?', self.params[:generation_id])
-    # BudgetSpp.select(
-    #   "budget_spps.year, budget_spps.created_at, budget_spps.updated_at, budget_spps.generation_id, sum(monthly_spps.amount AS total)"
-    # ).joins(:generation, :monthly_spps)
-    # BudgetSpp.select("budget_spps.*", "generations.*", "sum(monthly_spps.amount) AS total")
-    #   .joins(:generation, :monthly_spps)
-    #   .where('budget_spps.generation_id = ?', self.params[:generation_id]).where('monthly_spps.budget_spp_id = ?', self.params[:id])
-
-    # BudgetSpp.select("budget_spp.*", "sum(monthly_spps.amount)").joins(:generation, :monthly_spps)
 
     BudgetSpp.select("budget_spps.*, sum(monthly_spps.amount) AS total").joins(:monthly_spps).where("budget_spps.generation_id = ?", self.params[:generation_id]).group("budget_spps.id")
-    
-
   end
+
+  # private
+
+  # # def filter_custom_column_condition
+  # #   ->(column, value) { ::Arel::Nodes::SqlLiteral.new(column.field.to_s).matches("#{ column.search.value }%") }
+  # # end
 end

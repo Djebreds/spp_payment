@@ -1,0 +1,35 @@
+<%= form_for @monthly_spp, url: url do |f| %>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="mb-3">
+                <% invalid = monthly_spp.errors.include?(:month) %>
+                <label for="month" class="my-1">Bulan</label>
+                <%= f.text_field :month, class: "form-control #{'is-invalid' if invalid}", "data-mask": "0000", maxlength:"4",id: "month", placeholder: "Masukkan Bulan", required: true, readonly: true %>
+                <% if invalid %>
+                    <div class="invalid-feedback d-block">
+                        <% monthly_spp.errors.full_messages_for(:month).each do |error_message| %>
+                            <%= error_message %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="mb-3">
+                <% invalid = monthly_spp.errors.include?(:amount) %>
+                <label for="amount" class="my-1">Jumlah</label>
+                <%= f.text_field :amount, class: "form-control #{'is-invalid' if invalid}", "data-mask": "000.000", maxlength:"7", id: "amount", placeholder: "Masukkan Jumlah", required: true %>
+                <% if invalid %>
+                    <div class="invalid-feedback d-block">
+                        <% monthly_spp.errors.full_messages_for(:amount).each do |error_message| %>
+                            <%= error_message %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12 text-end">
+        <button type="reset" class="btn btn-danger fs-5">Reset</button>
+        <button type="submit" class="btn btn-primary fs-5">Submit</button>
+    </div>
+<% end %>

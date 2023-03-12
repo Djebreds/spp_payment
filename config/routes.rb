@@ -18,8 +18,8 @@ Rails.application.routes.draw do
           get 'payments/index'
           resources :payment_methods, except: :show
           resources :generations, except: :show do
-            resources :budget_spps, excepts: :show do
-              resources :monthly_spps, excepts: :show
+            resources :budget_spps, except: :show do
+              resources :monthly_spps, only: [:index, :edit, :update]
             end
           end
           namespace :categories do
