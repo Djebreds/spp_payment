@@ -6,7 +6,7 @@ class BudgetSppDatatable < AjaxDatatablesRails::ActiveRecord
       total:      { source: "total", cond: :like, searchable: true, orderable: true },
       created_at: { source: "BudgetSpp.created_at", cond: :like, searchable: true, orderable: true },
       updated_at: { source: "BudgetSpp.updated_at", cond: :like, searchable: true, orderable: true },
-      DT_RowId: { cond: :null_value, searchable: false, orderable: false },
+      DT_RowId:   { cond: :null_value, searchable: false, orderable: false },
       DT_actions: { source: "BudgetSppDecorator.DT_actions", cond: :null_value, searchable: false, orderable: false}
     }
   end
@@ -25,13 +25,14 @@ class BudgetSppDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-
     BudgetSpp.select("budget_spps.*, sum(monthly_spps.amount) AS total").joins(:monthly_spps).where("budget_spps.generation_id = ?", self.params[:generation_id]).group("budget_spps.id")
   end
 
-  # private
+  def records_total_count
+    fetch_records.unscope(:group).unscope(:select).unscope(:joins).count(:all)
+  end
 
-  # # def filter_custom_column_condition
-  # #   ->(column, value) { ::Arel::Nodes::SqlLiteral.new(column.field.to_s).matches("#{ column.search.value }%") }
-  # # end
+  def records_filtered_count
+    filter_records(fetch_records).unscope(:group).unscope(:select).unscope(:joins).count(:all)
+  end
 end

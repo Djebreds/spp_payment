@@ -11,6 +11,9 @@ var table = $('#datatables-column-search-text-inputs').DataTable({
       data: 'years',
     },
     {
+      data: 'total',
+    },
+    {
       data: 'created_at',
     },
     {
