@@ -78,15 +78,25 @@
                     </div>
                     <div id="content" class="d-none">
                         <div id="action" class="row justify-content-between align-items-center">
-                            <div class="col-md-9 text-center text-md-start button-action align-items-center ">
+                            <div class="col-md-9 text-center text-md-start button-action align-items-center">
+                                
                                 <a href="<%= new_admins_admin_payment_path %>" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
                                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/>
                                     </svg>
                                  Tambah Pembayaran </a>
+                                 
+                                 
+                                 
                             </div>
                             <div class="col-md-3 search-action">
                                 <div class="d-flex gap-3 my-2">
+                                    <select id="status" class="form-select">
+                                    <option></option>
+                                        <option value="2">Lunas</option>
+                                        <option value="1">Belum Lunas</option>
+                                        <option value="0">Belum Bayar</option>
+                                    </select>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                     </svg>
@@ -202,6 +212,8 @@
 
         }
     };
+
+    
 
     
 </script>

@@ -1,4 +1,4 @@
-class PaymentDatatable < AjaxDatatablesRails::ActiveRecord
+class PaymentDatatable < ApplicationDatatable
 
   def view_columns
     @view_columns ||= {
@@ -34,13 +34,26 @@ class PaymentDatatable < AjaxDatatablesRails::ActiveRecord
     end
   end
 
+  def additional_data
+    super.merge({
+      dt_dropdown_data(:status) => select_options_for_status,
+    })
+  end
 
   def get_raw_records
-      Payment.select(:'payments.id', :'students.name', :'students.nis', :'payments.status', 
-      :'payments.total', "admins.name AS admin_name", :'budget_spps.year',
-       "SUM(monthly_spps.amount) AS year_total", :'payments.created_at', :'payments.updated_at')
-       .joins(:admin, student: [generation: [budget_spps: :monthly_spps]])
-      .where("budget_spps.year = ?", 5.years.ago.strftime("%Y")).group("payments.id")
+      if params[:status].present?
+        Payment.select(:'payments.id', :'students.name', :'students.nis', :'payments.status', 
+          :'payments.total', "admins.name AS admin_name", :'budget_spps.year',
+           "SUM(monthly_spps.amount) AS year_total", :'payments.created_at', :'payments.updated_at')
+           .joins(:admin, student: [generation: [budget_spps: :monthly_spps]])
+          .where("budget_spps.year = ?", 5.years.ago.strftime("%Y")).where("payments.status = ?", params[:status]).group("payments.id")
+      else
+          Payment.select(:'payments.id', :'students.name', :'students.nis', :'payments.status', 
+            :'payments.total', "admins.name AS admin_name", :'budget_spps.year',
+             "SUM(monthly_spps.amount) AS year_total", :'payments.created_at', :'payments.updated_at')
+             .joins(:admin, student: [generation: [budget_spps: :monthly_spps]])
+            .where("budget_spps.year = ?", 5.years.ago.strftime("%Y")).group("payments.id")
+      end
   end
 
   def records_total_count
@@ -50,6 +63,13 @@ class PaymentDatatable < AjaxDatatablesRails::ActiveRecord
   def records_filtered_count
     filter_records(get_raw_records).length
   end
+
+  private
+
+
+    def filter_country_condition
+      ->(column, value) { column.table[column.field].eq(column.search.value.to_i + 1) }
+    end
 
   # Payment.select( "payments.id, students.name, students.nis, payments.status, 
   #   payments.total, admins.name AS admin_name, budget_spps.year, 
