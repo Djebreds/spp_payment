@@ -6,7 +6,7 @@
 		<div class="col-auto ms-auto text-end mt-n1">
 			<a class="btn btn-light bg-white shadow-sm" href="#" data-bs-toggle="dropdown" data-bs-display="static">
 				<i class="align-middle mt-n1" data-feather="calendar"></i> Hari ini |
-				<%= Time.now %>
+				<%= @date.to_date %>
 			</a>
 		</div>
 	</div>
@@ -20,13 +20,12 @@
 								<div class="row g-0 w-100">
 									<div class="col-6">
 										<div class="illustration-text p-3 m-1">
-											<h4 class="illustration-text">Dadang Jebred</h4>
+											<h4 class="illustration-text">Selamat Datang, <%= current_admin.name %></h4>
 											<p class="mb-0">Sppayment Dashboard</p>
 										</div>
 									</div>
 									<div class="col-6 align-self-end text-end">
-										<img src="{{ asset('assets-admin/img/illustrations/searching.png') }}" alt="Searching"
-											class="img-fluid illustration-img">
+										<%= image_tag "dashboard.png", class: "img-fluid illustration-img", alt: "dashboard" %>
 									</div>
 								</div>
 							</div>
@@ -37,19 +36,17 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col mt-0">
-										<h5 class="card-title">Students</h5>
+										<h5 class="card-title">Jumlah data Siswa</h5>
 									</div>
-
 									<div class="col-auto">
 										<div class="stat stat-sm">
 											<i class="align-middle" data-feather="users"></i>
 										</div>
 									</div>
 								</div>
-								<span class="h1 d-inline-block mt-1 mb-4">12</span>
+								<span class="h1 d-inline-block mt-1 mb-4"><%= @students %> <span class="fs-3">Siswa</span></span>
 								<div class="mb-0">
-									<span class="badge badge-soft-success me-2">+50 %</span>
-									<span class="text-muted">Student Baru</span>
+									<span class="badge badge-soft-info me-2 fs-6">Di tahun <%= @date.strftime("%Y") %></span>
 								</div>
 							</div>
 						</div>
@@ -59,19 +56,17 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col mt-0">
-										<h5 class="card-title">Instructors</h5>
+										<h5 class="card-title">Jumlah data Staff</h5>
 									</div>
-
 									<div class="col-auto">
 										<div class="stat stat-sm">
 											<i class="align-middle" data-feather="users"></i>
 										</div>
 									</div>
 								</div>
-								<span class="h1 d-inline-block mt-1 mb-4">13</span>
+								<span class="h1 d-inline-block mt-1 mb-4"><%= @staffs %> <span class="fs-3">Staff</span></span>
 								<div class="mb-0">
-									<span class="badge badge-soft-success me-2">+13%</span>
-									<span class="text-muted">Instruktur Baru</span>
+									<span class="badge badge-soft-info me-2 fs-6">Di tahun <%= @date.strftime("%Y") %></span>
 								</div>
 							</div>
 						</div>
@@ -81,19 +76,98 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col mt-0">
-										<h5 class="card-title">Courses</h5>
+										<h5 class="card-title">Jumlah data Jurusan</h5>
 									</div>
-
 									<div class="col-auto">
 										<div class="stat stat-sm">
-											<i class="align-middle" data-feather="book-open"></i>
+											<i class="align-middle" data-feather="briefcase"></i>
 										</div>
 									</div>
 								</div>
-								<span class="h1 d-inline-block mt-1 mb-4">15</span>
+								<span class="h1 d-inline-block mt-1 mb-4"><%= @majors %> <span class="fs-3">Jurusan</span></span>
 								<div class="mb-0">
-									<span class="badge badge-soft-success me-2">+23%</span>
-									<span class="text-muted">Kursus Baru</span>
+									<span class="badge badge-soft-info me-2 fs-6">Di tahun <%= @date.strftime("%Y") %></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 col-lg-12 col-xxl-3 d-flex">
+						<div class="card flex-fill bg-opacity-25 bg-danger">
+							<div class="card-body">
+								<div class="row">
+									<div class="col mt-0">
+										<h5 class="card-title">Spp Belum Bayar</h5>
+									</div>
+									<div class="col-auto">
+										<div class="rounded rounded-circle stat-sm bg-danger bg-opacity-25">
+											<i class="align-middle text-danger" data-feather="dollar-sign"></i>
+										</div>
+									</div>
+								</div>
+								<span class="h1 d-inline-block mt-1 mb-4"><%= @not_payments %> <span class="fs-3">Siswa</span></span>
+								<div class="mb-0">
+									<span class="badge badge-soft-danger me-2 fs-6">Dari <%= @students %> Siswa di bulan <%= @date.strftime("%B")%></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 col-lg-12 col-xxl-3 d-flex">
+						<div class="card flex-fill">
+							<div class="card-body flex-fill bg-opacity-25 bg-success">
+								<div class="row">
+									<div class="col mt-0">
+										<h5 class="card-title">Spp Sudah Bayar</h5>
+									</div>
+									<div class="col-auto">
+										<div class="rounded rounded-circle stat-sm bg-success bg-opacity-25">
+											<i class="align-middle text-success" data-feather="dollar-sign"></i>
+										</div>
+									</div>
+								</div>
+								<span class="h1 d-inline-block mt-1 mb-4"><%= @has_payments %> <span class="fs-3">Siswa</span></span>
+								<div class="mb-0">
+									<span class="badge badge-soft-info me-2 fs-6">Dari <%= @students %> Siswa di bulan <%= @date.strftime("%B")%></span>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 col-lg-12 col-xxl-3 d-flex">
+						<div class="card flex-fill">
+							<div class="card-body">
+								<div class="row">
+									<div class="col mt-0">
+										<h5 class="card-title">Jumlah data Kelas</h5>
+									</div>
+									<div class="col-auto">
+										<div class="stat stat-sm">
+											<i class="align-middle" data-feather="bookmark"></i>
+										</div>
+									</div>
+								</div>
+								<span class="h1 d-inline-block mt-1 mb-4"><%= @classes %> <span class="fs-3">Kelas</span></span>
+								<div class="mb-0">
+									<span class="badge badge-soft-info me-2 fs-6">Dari <%= @majors %> Jurusan</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 col-lg-12 col-xxl-3 d-flex">
+						<div class="card flex-fill">
+							<div class="card-body">
+								<div class="row">
+									<div class="col mt-0">
+										<h5 class="card-title">Jumlah data alumni</h5>
+									</div>
+									<div class="col-auto">
+										<div class="stat stat-sm">
+											<i class="align-middle" data-feather="users"></i>
+										</div>
+									</div>
+								</div>
+								<span class="h1 d-inline-block mt-1 mb-4"><%= @alumni_students %> <span class="fs-3">Siswa</span></span>
+								<div class="mb-0">
+									<span class="badge badge-soft-info me-2 fs-6">Dari <%= @generations %> angkatan</span>
 								</div>
 							</div>
 						</div>
@@ -104,36 +178,10 @@
 	</div>
 
 	<div class="row">
-
-		<div class="col-12 col-lg-4 d-flex">
-			<div class="card flex-fill">
-				<div class="card-header">
-					<h5 class="card-title mb-0">Ketertarikan</h5>
-				</div>
-				<div class="card-body">
-					<div class="chart">
-						<canvas id="chartjs-dashboard-radar"></canvas>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="col-12 col-lg-4 d-flex">
 			<div class="card flex-fill w-100">
 				<div class="card-header">
-					<div class="card-actions float-end">
-						<div class="dropdown position-relative">
-							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-									stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-									class="feather feather-more-horizontal align-middle">
-									<circle cx="12" cy="12" r="1"></circle>
-									<circle cx="19" cy="12" r="1"></circle>
-									<circle cx="5" cy="12" r="1"></circle>
-								</svg>
-							</a>
-						</div>
-					</div>
-					<h5 class="card-title mb-0">Kategori Berdasarkan Kursus</h5>
+					<h5 class="card-title mb-0">Jumlah Bayar SPP Pertahun</h5>
 				</div>
 				<div class="card-body d-flex w-100">
 					<div class="align-self-center chart">
@@ -151,53 +199,25 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-12 col-lg-4 d-flex">
+		<div class="col-12 col-lg-8 d-flex">
 			<div class="card flex-fill w-100">
 				<div class="card-header">
-					<div class="card-actions float-end">
-						<div class="dropdown position-relative">
-							<a href="#" data-bs-toggle="dropdown" data-bs-display="static">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-									stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-									class="feather feather-more-horizontal align-middle">
-									<circle cx="12" cy="12" r="1"></circle>
-									<circle cx="19" cy="12" r="1"></circle>
-									<circle cx="5" cy="12" r="1"></circle>
-								</svg>
-							</a>
-						</div>
-					</div>
-					<h5 class="card-title mb-0">Permintaan Instructur</h5>
+					<h5 class="card-title mb-0">Jumlah Spp Pertahun</h5>
 				</div>
-				<table class="table table-striped my-0">
-					<thead>
-						<tr>
-							<th class="d-none d-xl-table-cell w-50">Akun</th>
-							<th class="text-end">No Teleon</th>
-							<th>Aksi</th>
-						</tr>
-					</thead>
-					<tbody>
-							<tr>
-								<td>
-									<div class="d-flex gap-2">
-										<img src="Dadang" class="rounded-circle border border-2 border-dark"
-											width="50" height="50" alt="Dadang">
-										<div class="text-left align-self-center">
-											<h5 class="fw-bold mb-0">Dadang</h5>
-											<p class="mb-0">dadang@jebred.com</p>
-										</div>
-									</div>
-								</td>
-								<td class="text-left">01212333</td>
-								<td>
-                                    <a href="#" class="btn btn-info">
-                                        <i class="fas fa-search"></i>
-                                    </a>
-                                </td>
-							</tr>
-					</tbody>
-				</table>
+				<div class="card-body d-flex w-100">
+					<div class="align-self-center chart">
+						<div class="chartjs-size-monitor">
+							<div class="chartjs-size-monitor-expand">
+								<div class=""></div>
+							</div>
+							<div class="chartjs-size-monitor-shrink">
+								<div class=""></div>
+							</div>
+						</div>
+						<canvas id="payed_and_not" width="782" height="600" class="chartjs-render-monitor"
+							style="display: block; height: 300px; width: 391px;"></canvas>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -285,23 +305,22 @@
 			new Chart(document.getElementById("chartjs-dashboard-bar-devices"), {
 				type: "bar",
 				data: {
-					labels: "Jebred",
-					datasets: [{
-						label: "Mobile",
+					labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+					datasets: [ {
+						label: "Spp",
 						backgroundColor: window.theme.primary,
 						borderColor: window.theme.primary,
 						hoverBackgroundColor: window.theme.primary,
 						hoverBorderColor: window.theme.primary,
-						data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
-						barPercentage: .5,
-						categoryPercentage: .5
-					}, {
-						label: "Desktop",
-						backgroundColor: window.theme["primary-light"],
-						borderColor: window.theme["primary-light"],
-						hoverBackgroundColor: window.theme["primary-light"],
-						hoverBorderColor: window.theme["primary-light"],
-						data: [69, 66, 24, 48, 52, 51, 44, 53, 62, 79, 51, 68],
+						data: [
+							<%= @spp_6_year %>, 
+							<%= @spp_5_year %>, 
+							<%= @spp_4_year %>, 
+							<%= @spp_3_year %>, 
+							<%= @spp_2_year %>, 
+							<%= @spp_1_year %>, 
+							<%= @spp_now_year %>, 
+							],
 						barPercentage: .5,
 						categoryPercentage: .5
 					}]
@@ -318,7 +337,11 @@
 								display: false
 							},
 							ticks: {
-								stepSize: 20
+								beginAtZero:true,
+								stepSize: 100000,
+								callback: function(value) {
+									return 'Rp.' + value;
+								}
 							},
 							stacked: true,
 						}],
@@ -331,6 +354,83 @@
 					}
 				}
 			});
+
+		new Chart(document.getElementById("payed_and_not"), {
+				type: "bar",
+				data: {
+					labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+					datasets: [{
+						label: "Belum Bayar",
+						backgroundColor: window.theme.primary,
+						borderColor: window.theme.primary,
+						hoverBackgroundColor: window.theme.primary,
+						hoverBorderColor: window.theme.primary,
+						data: [
+							<%= @spp_1_month_not %>,
+							<%= @spp_2_month_not %>,
+							<%= @spp_3_month_not %>,
+							<%= @spp_4_month_not %>,
+							<%= @spp_5_month_not %>,
+							<%= @spp_6_month_not %>,
+							<%= @spp_7_month_not %>,
+							<%= @spp_8_month_not %>,
+							<%= @spp_9_month_not %>,
+							<%= @spp_10_month_not %>,
+							<%= @spp_11_month_not %>,
+							<%= @spp_12_month_not %>,
+						],
+						barPercentage: .5,
+						categoryPercentage: .5
+					}, {
+						label: "Telah Bayar",
+						backgroundColor: window.theme["primary-light"],
+						borderColor: window.theme["primary-light"],
+						hoverBackgroundColor: window.theme["primary-light"],
+						hoverBorderColor: window.theme["primary-light"],
+						data: [
+							<%= @spp_1_month_payed %>,
+							<%= @spp_2_month_payed %>,
+							<%= @spp_3_month_payed %>,
+							<%= @spp_4_month_payed %>,
+							<%= @spp_5_month_payed %>,
+							<%= @spp_6_month_payed %>,
+							<%= @spp_7_month_payed %>,
+							<%= @spp_8_month_payed %>,
+							<%= @spp_9_month_payed %>,
+							<%= @spp_10_month_payed %>,
+							<%= @spp_11_month_payed %>,
+							<%= @spp_12_month_payed %>,
+						],
+						barPercentage: .5,
+						categoryPercentage: .5
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					cornerRadius: 15,
+					legend: {
+						display: false
+					},
+					scales: {
+						yAxes: [{
+							gridLines: {
+								display: false
+							},
+							ticks: {
+								stepSize: 100,
+							},
+							stacked: true,
+						}],
+						xAxes: [{
+							gridLines: {
+								color: "transparent"
+							},
+							stacked: true,
+						}]
+					}
+				}
+			});
+
 		});
 	</script>
 	<script>

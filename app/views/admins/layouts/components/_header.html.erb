@@ -14,9 +14,7 @@
 							<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
 							<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
 						</svg>
-						
 					    <span class="indicator">2</span>
-						
 					</div>
 				</a>
 				<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown"
@@ -58,21 +56,12 @@
 					<i class="align-middle" data-feather="settings"></i>
 				</a>
 				<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-					<%# <img src="{{ $user['photoUrl'] }}" width="35" height="35" class="border border-1 border-dark rounded-circle"
-						alt="{{ $user['name'] }}"> %>
-                        photo
+                    <%= current_admin.name %>
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
-					<%# {{-- <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-					<a class="dropdown-item" href="pages-settings.html"><i class="align-middle me-1"
-							data-feather="settings"></i>Settings & Privacy</a> --}} %>
+					<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 					<div class="dropdown-divider"></div>
 					<%= button_to "Logout", destroy_admin_session_path, method: :delete, class: "dropdown-item" %>
-					<%# <a class="dropdown-item" href="/admins/logout"
-						onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i
-							class="align-middle me-1" data-feather="power"></i>Logout</a>
-					<form action="/admins/logout" id="logout-form" method="POST" class="d-none"></form> %>
 				</div>
 			</li>
 		</ul>
