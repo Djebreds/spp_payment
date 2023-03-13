@@ -433,63 +433,6 @@
 
 		});
 	</script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			// Pie chart
-			new Chart(document.getElementById("chartjs-dashboard-pie"), {
-				type: "pie",
-				data: {
-					labels: ["Direct", "Affiliate", "E-mail", "Other"],
-					datasets: [{
-						data: [2602, 1253, 541, 1465],
-						backgroundColor: [
-							window.theme.primary,
-							window.theme.warning,
-							window.theme.danger,
-							"#E8EAED"
-						],
-						borderWidth: 5,
-						borderColor: window.theme.white
-					}]
-				},
-				options: {
-					responsive: !window.MSInputMethodContext,
-					maintainAspectRatio: false,
-					cutoutPercentage: 70,
-					legend: {
-						display: false
-					}
-				}
-			});
-		});
-	</script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			// Radar chart
-			new Chart(document.getElementById("chartjs-dashboard-radar"), {
-				type: "radar",
-				data: {
-					labels: "Jebred",
-					datasets: [{
-						label: "Interests",
-						backgroundColor: "rgba(0, 123, 255, 0.2)",
-						borderColor: "#2979ff",
-						pointBackgroundColor: "#2979ff",
-						pointBorderColor: "#fff",
-						pointHoverBackgroundColor: "#fff",
-						pointHoverBorderColor: "#2979ff",
-						data: [70, 53, 82, 60, 33]
-					}]
-				},
-				options: {
-					maintainAspectRatio: false,
-					legend: {
-						display: false
-					}
-				}
-			});
-		});
-	</script>
 	<%# {{-- <script>
 		document.addEventListener("DOMContentLoaded", function() {
 			$("#datatables-dashboard-traffic").DataTable({

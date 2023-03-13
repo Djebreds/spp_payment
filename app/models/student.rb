@@ -15,6 +15,9 @@ class Student < ApplicationRecord
   
   devise :database_authenticatable, :rememberable, :validatable, :authentication_keys => [:nis]
 
+  after_create :check_student_graduate
+  before_update :check_student_graduate
+
   def acceptable_photo
     return unless photo.attached?
 
@@ -22,4 +25,14 @@ class Student < ApplicationRecord
       errors.add(:photo, "max size is 1 MB") 
     end
   end
+
+  def check_student_graduate
+    get_generation = generation.years
+    year_graduate = get_generation.split("/")
+
+    if DateTime.current.strftime("%Y") > year_graduate[1]
+      self.status = :inactive
+    end
+  end
+
 end

@@ -63,7 +63,7 @@ end
 #       .where("")
 # Payment.joins(student: [generation: [budget_spps: :monthly_spps ]] ).where("budget_spps.year = ?", 5.years.ago.strftime("%Y")).where("monthly_spps.month = ?", 5.years.ago.strftime("%B")).where("payments.status = ?", 2)
 
-# Student.joins(:payments, [generation: [budget_spps: :monthly_spps]] ).where("budget_spps.year = ?", @date.strftime("%Y")).where("budget_spps.month = ?", @date.strftime("%B")).where("payments.status = ?", 2)
+#  Student.joins(:payments, [generation: [budget_spps: :monthly_spps]] ).where("budget_spps.year = ?", @date.strftime("%Y")).where("budget_spps.month = ?", @date.strftime("%B")).where("payments.status = ?", 2)
 
 # get data siswa anu encan mayar di bulan bulan saacanna
 # get data siswa anu udah mayar di bulan bulan saacanna

@@ -7,5 +7,5 @@ class Payment < ApplicationRecord
   validates :payment_date, :confirmation_date, :total, :description, 
             :total, presence: true
 
-  enum status: { initial: 0, pending: 1, completed: 2, failed: 4 }
+  enum status: { initial: 0, arrears: 1, completed: 2 }
 end
