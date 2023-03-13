@@ -1,6 +1,7 @@
 class BudgetSpp < ApplicationRecord
   belongs_to :generation
-  has_many :monthly_spps, dependent: :delete_all
+  has_many :monthly_spps, dependent: :destroy
+  has_many :payments, dependent: :destroy
 
   trigger.after(:insert) do
     "

@@ -15,7 +15,7 @@ class Student < ApplicationRecord
   
   devise :database_authenticatable, :rememberable, :validatable, :authentication_keys => [:nis]
 
-  after_create :check_student_graduate
+  before_save :check_student_graduate
   before_update :check_student_graduate
 
   def acceptable_photo
