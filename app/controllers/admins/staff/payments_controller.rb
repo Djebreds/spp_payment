@@ -1,8 +1,8 @@
-class Admins::Admin::PaymentsController < ApplicationController
+class Admins::Staff::PaymentsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_payment, only: [:edit, :update, :destroy]
   
-  layout "admins/layouts/app"
+  layout "admins/staff/layouts/app"
   def index
     respond_to do |format|
       format.html
@@ -29,14 +29,6 @@ class Admins::Admin::PaymentsController < ApplicationController
     render json: { monthly_spps: monthly_spps }
   end
 
-  def show
-    # @test = Payment.select(:'payments.id', :'students.name', :'students.nis', :'payments.status', 
-    #   :'payments.total', :'monthly_spps.month',:'monthly_spps.amount', "admins.name AS admin_name", :'budget_spps.year',
-    #    "SUM(monthly_spps.amount) AS year_total", :'payments.created_at', :'payments.updated_at')
-    #    .joins(:admin, student: [generation: [budget_spps: :monthly_spps]])
-    #   .where("budget_spps.year = ?", 5.years.ago.strftime("%Y")).where('payments.status = ?', 2).where('students.id = ?').group("payments.id")
-  end
-
   def create
     @payment = Payment.new(payment_params.merge(
       admin_id: current_admin.id, 
@@ -53,25 +45,25 @@ class Admins::Admin::PaymentsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @budget_spps = BudgetSpp.find(:all)
-  # end
+  def edit
+    @budget_spps = BudgetSpp.all
+  end
 
-  # def update
-  #   if @payment.update(payment_params.merge(
-  #     admin_id: current_admin.id, 
-  #     payment_date: DateTime.current.strftime("%A, %e %B %Y %H:%M:%S %p"), 
-  #     confirmation_date: DateTime.current.strftime("%A, %e %B %Y %H:%M:%S %p"),
-  #     status: :completed
-  #     ))
+  def update
+    if @payment.update(payment_params.merge(
+      admin_id: current_admin.id, 
+      payment_date: DateTime.current.strftime("%A, %e %B %Y %H:%M:%S %p"), 
+      confirmation_date: DateTime.current.strftime("%A, %e %B %Y %H:%M:%S %p"),
+      status: :completed
+      ))
       
-  #     flash[:notice] = "Transaksi berhasil diubah"
-  #     redirect_to admins_admin_payments_path
-  #   else
-  #     flash[:alert] = "Transaksi gagal diubah"
-  #     render :edit, status: :unprocessable_entity
-  #   end
-  # end
+      flash[:notice] = "Transaksi berhasil diubah"
+      redirect_to admins_admin_payments_path
+    else
+      flash[:alert] = "Transaksi gagal diubah"
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   def destroy
     if @payment.destroy!

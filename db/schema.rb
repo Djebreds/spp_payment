@@ -123,7 +123,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_062654) do
     t.text "description"
     t.integer "status", default: 0, null: false
     t.bigint "student_id", null: false
-    t.bigint "payment_method_id", null: false
     t.bigint "budget_spp_id", null: false
     t.bigint "admin_id", null: false
     t.datetime "created_at", null: false
@@ -132,7 +131,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_062654) do
     t.index ["admin_id"], name: "index_payments_on_admin_id"
     t.index ["budget_spp_id"], name: "index_payments_on_budget_spp_id"
     t.index ["monthly_spp_id"], name: "index_payments_on_monthly_spp_id"
-    t.index ["payment_method_id"], name: "index_payments_on_payment_method_id"
     t.index ["student_id"], name: "index_payments_on_student_id"
   end
 
@@ -168,7 +166,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_062654) do
   add_foreign_key "payments", "admins"
   add_foreign_key "payments", "budget_spps"
   add_foreign_key "payments", "monthly_spps"
-  add_foreign_key "payments", "payment_methods"
   add_foreign_key "payments", "students"
   add_foreign_key "students", "class_room_majors"
   add_foreign_key "students", "generations"

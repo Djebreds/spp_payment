@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     authenticated :student do
       namespace :students do
         get 'dashboard/index', as: :authenticated_root
+        get 'dashboard/history', to: 'history_payments#index'
       end
     end
   end
@@ -38,7 +39,9 @@ Rails.application.routes.draw do
           end
         end
         namespace :staff do
-          get 'dashboard/index', as: :authenticated_root
+          get 'dashboard/index', as: :authenticated_root, to: 'dashboard#index'
+          resources :payments
+          get 'dashboard/history', to: 'history_payments#index'
         end
       end
     end

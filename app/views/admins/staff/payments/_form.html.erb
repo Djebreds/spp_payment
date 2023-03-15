@@ -1,0 +1,92 @@
+
+<%= form_for @payment, url: url, html: {'data-turbo' => "false"}  do |f| %>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="mb-3">
+                <% invalid = @payment.errors.include?(:student_id) %>
+                <label for="student_id" class="my-1">Siswa</label>
+                <select name="payment[student_id]" id="student_id" class="form-select <%= 'is-invalid' if invalid %>">
+                    <option></option>
+                    <% Student.includes(:class_room_major).all.group_by { |student| student.class_room_major.class_major }.each do |class_name, students| %>
+                        <optgroup label="<%= class_name %>">
+                            <% students.each do |student| %>
+                                <option value="<%= student.id %>" <%= 'selected' if f.object.student_id == student.id %>><%= "#{student.name} | #{student.nis}" %></option>
+                            <% end %>
+                        </optgroup>
+                    <% end %>
+                </select>
+                <% if invalid %>
+                    <div class="invalid-feedback d-block">
+                        <% @payment.errors.full_messages_for(:student_id).each do |error_message| %>
+                            <%= error_message %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+            
+            <div class="mb-3" id="budget">
+                <% invalid = @payment.errors.include?(:budget_spp_id) %>
+                <label for="budget_spp_id" class="my-1">Tahun SPP</label>
+                <%# <%= select_tag "payment[budget_spp_id]", options_from_collection_for_select(@budget_spps, 'id', 'year', selected: f.object.budget_spp_id), class: "form-select #{'is-invalid' if invalid}", id: "budget_spp_id",required: true %>
+                <select name="payment[budget_spp_id]" id="budget_spp_id" class="form-select <%= 'is-invalid' if invalid %>" required>
+                    <option></option>
+                    <% Student.select('budget_spps.id', 'budget_spps.year', 'sum(monthly_spps.amount) AS total').joins(generation: [budget_spps: :monthly_spps]).where('students.id = ?', params[:student_id]).group('budget_spps.id').each do |budget_spp| %>
+                        <% budget_spp.generation.budget_spps.each do |spp| %>
+                            <option value="<%= spp.id %>" <%= 'selected' if f.object.budget_spp_id %> ><%= spp.year %>|<%= spp.total %></option>
+                        <% end %>
+                    <% end %>
+                </select>
+
+                <% if invalid %>
+                    <div class="invalid-feedback d-block">
+                        <% @payment.errors.full_messages_for(:budget_spp_id).each do |error_message| %>
+                            <%= error_message %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+
+             <div class="mb-3" id="budget">
+                <% invalid = @payment.errors.include?(:monthly_spp_id) %>
+                <label for="monthly_spp_id" class="my-1">Bulan SPP</label>
+                <%# <%= select_tag "payment[budget_spp_id]", options_from_collection_for_select(@budget_spps, 'id', 'year', selected: f.object.budget_spp_id), class: "form-select #{'is-invalid' if invalid}", id: "budget_spp_id",required: true %>
+                <select name="payment[monthly_spp_id]" id="monthly_spp_id" class="form-select <%= 'is-invalid' if invalid %>" required>
+                    <option></option>
+                    <% BudgetSpp.select('monthly_spps.month', 'monthly_spps.amount').joins(:monthly_spps).where('budget_spps.id = ?', params[:generation_id]).each do |monthly_spp| %>
+                        <option value="<%= monthly_spp.id %>"><%= monthly_spp.month %> | <%= monthly_spp.amount %></option>
+                    <% end %>
+                </select>
+
+                <% if invalid %>
+                    <div class="invalid-feedback d-block">
+                        <% @payment.errors.full_messages_for(:monthly_spp_id).each do |error_message| %>
+                            <%= error_message %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+
+            <div class="mb-3">
+                <% invalid = @payment.errors.include?(:total) %>
+                <label for="total" class="my-1">Bayar</label>
+                <%# <%= select_tag "class_room_major[total]", options_from_collection_for_select(Major.all, 'id', 'short', selected: f.object.total), class: "form-select #{'is-invalid' if invalid}", required: true %> 
+                <select name="payment[total]" id="total" class="form-select <%= 'is-invalid' if invalid %>">
+                    <option></option>
+                    <%# <option value="50000" <%= 'selected' if f.object.total == payment.total %>>Rp. 50.000,00</option>
+                </select>
+                <% if invalid %>
+                    <div class="invalid-feedback d-block">
+                        <% @payment.errors.full_messages_for(:total).each do |error_message| %>
+                            <%= error_message %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12 text-end">
+        <button type="reset" class="btn btn-danger fs-5">Reset</button>
+        <button type="submit" class="btn btn-primary fs-5">Submit</button>
+    </div>
+<% end %>

@@ -36,13 +36,16 @@ class Student < ApplicationRecord
   end
 
   def current_payment_monthly
-    payments.find_by(monthly_spp_id: DateTime.current.strftim('%-m'))
+    payments.find_by(monthly_spp_id: DateTime.current.strftime('%-m'))
   end
 
   def next_payment_available?
-    payments.find_by(monthly_spp_id: 1.month.after.strftim('%-m')).any?
+    payments.find_by(monthly_spp_id: 1.month.after.strftime('%-m')).any?
   end
 
-  def 
+  def has_payment?
+    payments.where('monthly_spp_id = ?', DateTime.current.strftime('%B')).any?
+  end
+
 
 end

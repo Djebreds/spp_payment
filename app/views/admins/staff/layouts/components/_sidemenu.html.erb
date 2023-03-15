@@ -1,0 +1,30 @@
+<nav id="sidebar" class="sidebar">
+	<div class="sidebar-content js-simplebar">
+		<a class="sidebar-brand d-flex gap-1" href="/admin">
+            <%= image_tag "Logo-light.svg", width: 200 %>
+		</a>
+
+		<ul class="sidebar-nav">
+			<li class="sidebar-header">Dashboard</li>
+			<li class="sidebar-item <%= 'active' if current_page?(admins_staff_authenticated_root_path) %>">
+				<a class="sidebar-link" href="<%= admins_staff_authenticated_root_path %>">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2 align-middle me-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+					<span class="align-middle">Dashboard</span>
+				</a>
+			</li>
+			<li class="sidebar-header">Data</li>
+			<li class="sidebar-item <%= current_page?(admins_staff_payments_path) || parent_nav_is_active?('/admins/staff/payments/') ? 'active' : '' %>">
+				<a class="sidebar-link" href="<%= admins_staff_payments_path %>">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard align-middle me-2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+					<span class="align-middle">Pembayaran</span>
+				</a>
+			</li>
+			<li class="sidebar-item <%= current_page?(admins_staff_dashboard_history_path) || parent_nav_is_active?('/admins/staff/history_payment/') ? 'active' : '' %>">
+				<a class="sidebar-link" href="<%= admins_staff_dashboard_history_path %>">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard align-middle me-2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+					<span class="align-middle">History</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
