@@ -8,7 +8,6 @@ class CreatePayments < ActiveRecord::Migration[7.0]
       t.integer :status, default: 0, null: false
 
       t.references :student, null: false, foreign_key: true
-      t.references :payment_method, null: false, foreign_key: true
       t.references :budget_spp, null: false, foreign_key: true
       t.references :admin, null: false, foreign_key: true
       t.timestamps

@@ -1,0 +1,23 @@
+<div class="container-fluid p-0">
+    <h1 class="h3 mb-3">Edit Pembayaran</h1>
+    <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<%= admins_admin_authenticated_root_path %>">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="<%= admins_admin_payments_path %>">Pembayaran</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @payment.id %></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+        </ol>
+    </nav>
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Edit Pembayaran</h5>
+                </div>
+                <div class="card-body">
+                    <%= render 'form', payment: @payment, url: admins_admin_payment_path(@payment) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

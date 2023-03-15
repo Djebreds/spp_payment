@@ -77,12 +77,12 @@ end
 #   ])
 # end
 
-unless PaymentMethod.any?
-  PaymentMethod.create!([
-    { name: "Cash" },
-    { name: "Online Payment" },
-  ])
-end
+# unless PaymentMethod.any?
+#   PaymentMethod.create!([
+#     { name: "Cash" },
+#     { name: "Online Payment" },
+#   ])
+# end
 
 unless Student.any?
   Student.create!([
@@ -132,9 +132,9 @@ unless Payment.any?
         total: 200000, 
         status: :initial, 
         student_id: 1, 
-        payment_method_id: 1,
         budget_spp_id: 1, 
         admin_id: 1, 
+        monthly_spp_id: 1,
         description: "Bayar SPP"
       }
     ])

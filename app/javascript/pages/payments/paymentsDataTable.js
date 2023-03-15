@@ -20,6 +20,9 @@ var table = $('#datatables-column-search-text-inputs').DataTable({
       data: 'year',
     },
     {
+      data: 'month',
+    },
+    {
       data: 'year_total',
     },
     {

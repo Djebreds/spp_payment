@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_10_124337) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_062654) do
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -128,8 +128,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_124337) do
     t.bigint "admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "monthly_spp_id", null: false
     t.index ["admin_id"], name: "index_payments_on_admin_id"
     t.index ["budget_spp_id"], name: "index_payments_on_budget_spp_id"
+    t.index ["monthly_spp_id"], name: "index_payments_on_monthly_spp_id"
     t.index ["payment_method_id"], name: "index_payments_on_payment_method_id"
     t.index ["student_id"], name: "index_payments_on_student_id"
   end
@@ -165,6 +167,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_124337) do
   add_foreign_key "monthly_spps", "budget_spps"
   add_foreign_key "payments", "admins"
   add_foreign_key "payments", "budget_spps"
+  add_foreign_key "payments", "monthly_spps"
   add_foreign_key "payments", "payment_methods"
   add_foreign_key "payments", "students"
   add_foreign_key "students", "class_room_majors"

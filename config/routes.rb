@@ -17,6 +17,8 @@ Rails.application.routes.draw do
           get 'dashboard/index', as: :authenticated_root
           get 'payments/index'
           resources :payment_methods, except: :show
+          get 'payments/update_budget', to: 'payments#update_budget'
+          get 'payments/update_monthly', to: 'payments#update_monthly'
           resources :payments
           resources :generations, except: :show do
             resources :budget_spps, except: :show do

@@ -6,6 +6,7 @@ class PaymentDatatable < ApplicationDatatable
       nis:         { source: "Student.nis", cond: :like, searchable: true, orderable: true },
       admin_name:  { source: "Admin.name", cond: :like, searchable: true, orderable: true },
       year:        { source: "BudgetSpp.year", cond: :like, searchable: true, orderable: true },
+      month:       { source: "MonthlySpp.month",cond: :like, searchable: true, orderable: true },
       year_total:  { source: "PaymentDecorator.year_total", cond: :like, searchable: false, orderable: true },
       total:       { source: "PaymentDecorator.total", cond: :like, searchable: true, orderable: true },
       status:      { source: "PaymentDecorator.status", cond: :like, searchable: true, orderable: true },
@@ -25,6 +26,7 @@ class PaymentDatatable < ApplicationDatatable
         year:       record.year,
         year_total: record.decorate.year_total,
         total:      record.decorate.total,
+        month:      record.month,
         status:     record.decorate.status,
         created_at: record.created_at,
         updated_at: record.updated_at,
@@ -42,14 +44,14 @@ class PaymentDatatable < ApplicationDatatable
 
   def get_raw_records
       if params[:status].present?
-        Payment.select(:'payments.id', :'students.name', :'students.nis', :'payments.status', 
-          :'payments.total', "admins.name AS admin_name", :'budget_spps.year',
+        Payment.select(:'payments.id', :'students.name', :'students.nis', :'payments.status', :'monthly_spps.month', 
+          :'monthly_spps.amount', :'payments.total', "admins.name AS admin_name", :'budget_spps.year',
            "SUM(monthly_spps.amount) AS year_total", :'payments.created_at', :'payments.updated_at')
            .joins(:admin, student: [generation: [budget_spps: :monthly_spps]])
           .where("budget_spps.year = ?", 5.years.ago.strftime("%Y")).where("payments.status = ?", params[:status]).group("payments.id")
       else
           Payment.select(:'payments.id', :'students.name', :'students.nis', :'payments.status', 
-            :'payments.total', "admins.name AS admin_name", :'budget_spps.year',
+            :'payments.total', :'monthly_spps.month',:'monthly_spps.amount', "admins.name AS admin_name", :'budget_spps.year',
              "SUM(monthly_spps.amount) AS year_total", :'payments.created_at', :'payments.updated_at')
              .joins(:admin, student: [generation: [budget_spps: :monthly_spps]])
             .where("budget_spps.year = ?", 5.years.ago.strftime("%Y")).group("payments.id")
